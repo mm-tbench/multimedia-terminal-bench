@@ -90,6 +90,51 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 .results-table .num { font-variant-numeric: tabular-nums; text-align: right; }
 .results-table tbody tr.highlight { background: var(--accent-soft); }
 .results-table tbody tr.highlight td { font-weight: 600; }
+.results-note { font-size: 0.92rem; color: var(--muted); margin-top: 0.5rem; }
+
+.stat-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem;
+  margin: 0 0 2rem;
+}
+.stat {
+  background: var(--accent-soft); border-radius: 10px;
+  padding: 1.1rem 0.9rem; text-align: center;
+}
+.stat-num {
+  font-weight: 800; font-size: 1.85rem; color: var(--accent);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.stat-lbl {
+  margin-top: 0.25rem; color: var(--muted); font-size: 0.88rem;
+}
+@media (max-width: 720px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-num { font-size: 1.55rem; }
+}
+
+.meta-cat-row { margin-top: 1.5rem; }
+.meta-cat {
+  padding: 0.55rem 0; border-top: 1px solid #E5E8EE;
+  font-size: 0.98rem; line-height: 1.55;
+}
+.meta-cat:last-child { border-bottom: 1px solid #E5E8EE; }
+.meta-cat .muted { color: var(--muted); }
+
+.finding-h3 {
+  font-weight: 700; font-size: 1.15rem; margin: 2rem 0 0.7rem;
+  letter-spacing: -0.005em;
+}
+.findings-list { list-style: none; padding: 0; margin: 0; }
+.findings-list li {
+  padding: 0.7rem 0 0.7rem 1.4rem; position: relative;
+  font-size: 1rem; line-height: 1.65;
+  border-top: 1px solid #E5E8EE;
+}
+.findings-list li:last-child { border-bottom: 1px solid #E5E8EE; }
+.findings-list li::before {
+  content: "→"; position: absolute; left: 0; top: 0.7rem;
+  color: var(--accent); font-weight: 700;
+}
 .bibtex-block {
   position: relative; background: #1F2430; color: #CDD3DE;
   padding: 1.4rem 1.6rem; border-radius: 8px; overflow-x: auto;
@@ -170,11 +215,14 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
   </div>
 
   <figure class="hero-figure">
-    <img src="static/images/figure1.png" alt="An example MMTB task showing how a terminal agent must merge multiple video and audio files using either native multimedia perception or command-line conversion tools.">
+    <img src="static/images/figure1.png" alt="An example MMTB task and two terminal-agent approaches.">
     <figcaption>
-      <strong>An example MMTB task.</strong> The task asks the agent to assemble three videos and one audio file into a single edited artifact.
-      A native-multimodal agent (top) reads the raw media directly through perception tools.
-      A text-only terminal agent (bottom) reaches the same evidence through command-line conversion tools (OCR, ASR, motion-energy), adding processing steps that introduce inefficiency and errors.
+      <strong>An example MMTB task and two terminal-agent approaches.</strong>
+      The task merges three videos and one audio file into one edited artifact.
+      Agents with native multimodal access read the raw files directly;
+      text-only agents must reach the same evidence through command-line tools
+      (OCR, ASR, motion-energy), adding processing steps that introduce
+      inefficiency and errors.
     </figcaption>
   </figure>
 </header>
@@ -196,12 +244,52 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
   </p>
 </section>
 
+<section class="section-mmtb" id="benchmark">
+  <h2>The benchmark at a glance</h2>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="stat-num">105</div><div class="stat-lbl">tasks</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">meta-categories</div></div>
+    <div class="stat"><div class="stat-num">536</div><div class="stat-lbl">media files</div></div>
+    <div class="stat"><div class="stat-num">6 h 54 m</div><div class="stat-lbl">total audio-visual content</div></div>
+  </div>
+
+  <p>
+    Each MMTB task hands the agent a working directory of image, audio, or video
+    files and requires a checkable artifact &mdash; a selected file, a timestamped
+    segment, a structured JSON/CSV record, an edit list, or a processed media
+    clip. Tasks are scoped so that a typical
+    <code>ffprobe → ffmpeg → frame / ASR → output</code> shell pipeline cannot
+    reach the right answer without genuine cross-modal perception. Per-task
+    duration ranges from a few seconds to 49&thinsp;min (median 1&thinsp;m&thinsp;20&thinsp;s).
+  </p>
+
+  <p>
+    Every task is anchored to a public URL documenting a <strong>paid practitioner workflow</strong> &mdash;
+    predominantly Upwork and Fiverr gig listings, with casting calls, practitioner forums,
+    and industry standards documents making up the rest. The suite captures the
+    multimedia work people are actually paid to do, not synthetic instruction templates.
+  </p>
+
+  <div class="meta-cat-row">
+    <div class="meta-cat"><strong>Media production</strong> &nbsp;<span class="muted">subtitling, broadcast / film, podcast assembly, game-capture review</span></div>
+    <div class="meta-cat"><strong>Performance &amp; coaching</strong> &nbsp;<span class="muted">acting takes, language-learner pronunciation, music performance feedback</span></div>
+    <div class="meta-cat"><strong>Enterprise &amp; compliance</strong> &nbsp;<span class="muted">meeting / screen-share evidence, business document structuring, audit</span></div>
+    <div class="meta-cat"><strong>Personal &amp; education</strong> &nbsp;<span class="muted">user&rsquo;s own media, lecture chaptering, study notes</span></div>
+    <div class="meta-cat"><strong>Operations &amp; research</strong> &nbsp;<span class="muted">ML data annotation, smart-device automation, public-safety audits</span></div>
+  </div>
+</section>
+
 <section class="section-mmtb" id="results">
   <h2>Headline results</h2>
   <p>
-    Across 105 tasks, the gap between native multimedia perception and conversion-tool workflows is substantial.
-    Terminus-MM with Gemini&nbsp;3.1&nbsp;Pro reaches the highest binary success rate (37.1%) and partial credit (46.9%),
-    outperforming both the text-only baseline on the same backbone and Codex&nbsp;CLI with GPT&nbsp;5.2 on the same task suite.
+    Standalone terminal agents struggle on MMTB: Codex&nbsp;CLI with GPT-5.2 solves only
+    <strong>16.2%</strong> of tasks. Adding native multimodal perception tools to the
+    agent harness lifts performance substantially, but not every modality contributes
+    equally. <strong>Terminus-MM</strong> &mdash; the harness that exposes
+    <code>view_image</code>, <code>listen_audio</code>, and <code>watch_video</code> &mdash;
+    reaches the highest binary success rate (37.1%) and partial credit (46.9%) on
+    Gemini&nbsp;3.1&nbsp;Pro.
   </p>
 
   <div class="table-container">
@@ -210,7 +298,7 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
         <tr>
           <th>Harness</th>
           <th>Backbone</th>
-          <th>Tools</th>
+          <th>Native tools</th>
           <th class="num">Binary&nbsp;↑</th>
           <th class="num">Partial&nbsp;↑</th>
         </tr>
@@ -222,28 +310,23 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
         <tr><td>Terminus-IA</td>    <td>Gemini-3.1-Pro</td><td>+ image + audio</td>      <td class="num">0.333</td><td class="num">0.406</td></tr>
         <tr><td>Terminus-IV</td>    <td>Gemini-3.1-Pro</td><td>+ image + video</td>      <td class="num">0.333</td><td class="num">0.432</td></tr>
         <tr class="highlight"><td>Terminus-MM</td><td>Gemini-3.1-Pro</td><td>+ image + audio + video</td><td class="num">0.371</td><td class="num">0.469</td></tr>
-        <tr><td>Claude Code</td>    <td>Sonnet-4.6</td>     <td>+ image</td>              <td class="num">0.162</td><td class="num">0.186</td></tr>
-        <tr><td>Codex CLI</td>      <td>GPT-5.2</td>        <td>+ image</td>              <td class="num">0.162</td><td class="num">0.202</td></tr>
+        <tr><td>Claude Code</td>    <td>Sonnet-4.6</td>     <td>+ image (own)</td>        <td class="num">0.162</td><td class="num">0.186</td></tr>
+        <tr><td>Codex CLI</td>      <td>GPT-5.2</td>        <td>+ image (own)</td>        <td class="num">0.162</td><td class="num">0.202</td></tr>
       </tbody>
     </table>
   </div>
 
-  <p style="font-size: 0.92rem; color: var(--muted); margin-top: 0.5rem;">
+  <p class="results-note">
     Mean over 105 tasks. Binary&nbsp;= verifier-passing artifact match. Partial&nbsp;= task-specific partial-credit score.
     See the paper for cost, latency, modality-masking, and per-category breakdowns.
   </p>
-</section>
 
-<section class="section-mmtb">
-  <h2>What MMTB tests</h2>
-  <p>
-    MMTB tasks each hand the agent a working directory of image, audio, or video files and require a checkable
-    artifact: a selected file, a timestamped segment, a structured JSON or CSV record, an edit list, or a processed
-    media clip. Tasks are designed so that a typical
-    <code>ffprobe → ffmpeg → frame/ASR → output</code> shell pipeline cannot reach the right answer without
-    genuine cross-modal perception. The 105 tasks span five meta-categories: media production,
-    performance &amp; coaching, enterprise &amp; compliance, personal &amp; education, and operations &amp; research.
-  </p>
+  <h3 class="finding-h3">What we find</h3>
+  <ul class="findings-list">
+    <li><strong>Image alone is not enough.</strong> Adding only <code>view_image</code> (Terminus-KIRA, 0.105) does not improve over the text-only baseline (Terminus-2, 0.124) on Gemini-3.1-Pro &mdash; static frames rarely capture the cue MMTB tasks turn on.</li>
+    <li><strong>Audio is the largest single perceptual contribution.</strong> Adding <code>listen_audio</code> alone more than doubles binary success (0.124 &rarr; 0.257). Over half of MMTB&rsquo;s tasks turn on audio cues that no spectrogram-or-frame proxy reliably preserves.</li>
+    <li><strong>Native perception is also <em>cheaper</em>.</strong> Conversion-heavy successful runs cost <strong>1.63&times;&ndash;7.72&times;</strong> more API spend than native perception on the same tasks; worst case <strong>30.11&times;</strong> when native video is missing and <strong>42.49&times;</strong> when native audio is missing.</li>
+  </ul>
 </section>
 
 <section class="section-mmtb" id="bibtex">
