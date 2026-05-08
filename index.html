@@ -40,9 +40,10 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
   max-width: 700px; margin: 0 auto 2rem;
 }
 .authors {
-  text-align: center; max-width: 900px; margin: 0 auto 0.6rem;
-  font-size: 1.05rem; line-height: 1.7;
+  text-align: center; max-width: 1200px; margin: 0 auto 0.6rem;
+  font-size: 1rem; line-height: 1.7; white-space: nowrap;
 }
+@media (max-width: 880px) { .authors { white-space: normal; } }
 .authors a { color: var(--ink); }
 .authors sup { color: var(--accent); font-weight: 600; }
 .affiliations {
@@ -174,13 +175,13 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
   </p>
 
   <div class="authors">
-    Chiyeong Heo<sup>1</sup>,
-    Jaechang Kim<sup>1</sup>,
-    Junhyuk Kwon<sup>1</sup>,
-    Hoyoung Kim<sup>3</sup>,
-    Dongmin Park<sup>4</sup>,
-    Jonghyun Lee<sup>4</sup>,
-    Jungseul Ok<sup>1,2,*</sup>
+    Chiyeong&nbsp;Heo<sup>1</sup>,
+    Jaechang&nbsp;Kim<sup>1</sup>,
+    Junhyuk&nbsp;Kwon<sup>1</sup>,
+    Hoyoung&nbsp;Kim<sup>3</sup>,
+    Dongmin&nbsp;Park<sup>4</sup>,
+    Jonghyun&nbsp;Lee<sup>4</sup>,
+    Jungseul&nbsp;Ok<sup>1,2,*</sup>
   </div>
   <div class="affiliations">
     <sup>1</sup> GSAI, POSTECH
