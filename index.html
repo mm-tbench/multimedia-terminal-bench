@@ -27,9 +27,13 @@
 html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); }
 .hero-mmtb { padding: 4rem 1.5rem 2rem; background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FC 100%); }
 .title-mmtb {
-  font-weight: 800; font-size: 2.4rem; line-height: 1.15; letter-spacing: -0.02em;
-  text-align: center; max-width: 900px; margin: 0 auto 1.4rem;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 3.6vw, 2.25rem);
+  line-height: 1.18; letter-spacing: -0.018em;
+  text-align: center; max-width: 1180px; margin: 0 auto 1.4rem;
 }
+.title-mmtb .subtitle-line { white-space: nowrap; }
+@media (max-width: 720px) { .title-mmtb .subtitle-line { white-space: normal; } }
 .title-mmtb .accent { color: var(--accent); }
 .subtitle-mmtb {
   text-align: center; color: var(--muted); font-size: 1.05rem;
@@ -108,7 +112,7 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 <header class="hero-mmtb">
   <h1 class="title-mmtb">
     <span class="accent">MultiMedia-TerminalBench:</span><br>
-    Evaluating Terminal Agents on Multimedia-File Tasks
+    <span class="subtitle-line">Evaluating Terminal Agents on Multimedia-File Tasks</span>
   </h1>
   <p class="subtitle-mmtb">
     A Harbor-native benchmark of 105 tasks where terminal agents must understand
