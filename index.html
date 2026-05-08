@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultiMedia-TerminalBench: Evaluating Terminal Agents on Multimedia-File Tasks</title>
+<meta name="description" content="MultiMedia-TerminalBench (MMTB) is a Harbor-native benchmark of 105 tasks evaluating terminal agents that must understand audio, video, and image content and act on it through persistent file workflows.">
+<meta name="keywords" content="benchmark, terminal agent, multimodal, audio, video, evaluation, Harbor, NeurIPS">
+<meta name="author" content="Chiyeong Heo, Jaechang Kim, Junhyuk Kwon, Hoyoung Kim, Dongmin Park, Jonghyun Lee, Jungseul Ok">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MultiMedia-TerminalBench: Evaluating Terminal Agents on Multimedia-File Tasks">
+<meta property="og:description" content="A Harbor-native benchmark of 105 tasks for terminal agents that must understand multimedia content and act on it through persistent file workflows.">
+<meta property="og:image" content="static/images/figure1.png">
+<meta property="og:url" content="https://mm-tbench.github.io/multimedia-terminal-bench/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #2F5C99;
+  --accent-soft: #E3ECF7;
+  --ink: #1A1A1A;
+  --muted: #5A5A5A;
+}
+html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); }
+.hero-mmtb { padding: 4rem 1.5rem 2rem; background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FC 100%); }
+.title-mmtb {
+  font-weight: 800; font-size: 2.4rem; line-height: 1.15; letter-spacing: -0.02em;
+  text-align: center; max-width: 900px; margin: 0 auto 1.4rem;
+}
+.title-mmtb .accent { color: var(--accent); }
+.subtitle-mmtb {
+  text-align: center; color: var(--muted); font-size: 1.05rem;
+  max-width: 700px; margin: 0 auto 2rem;
+}
+.authors {
+  text-align: center; max-width: 900px; margin: 0 auto 0.6rem;
+  font-size: 1.05rem; line-height: 1.7;
+}
+.authors a { color: var(--ink); }
+.authors sup { color: var(--accent); font-weight: 600; }
+.affiliations {
+  text-align: center; color: var(--muted); font-size: 0.95rem;
+  max-width: 900px; margin: 0 auto 1.8rem; line-height: 1.6;
+}
+.link-row {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
+  margin: 0 auto 2.5rem; max-width: 900px;
+}
+.link-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 1.1rem; border-radius: 999px;
+  background: var(--ink); color: #fff !important;
+  font-weight: 500; font-size: 0.95rem; text-decoration: none;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+.link-pill:hover { transform: translateY(-1px); opacity: 0.92; }
+.link-pill.outline { background: transparent; color: var(--ink) !important; border: 1.5px solid var(--ink); }
+.hero-figure {
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-figure img { width: 100%; height: auto; display: block; }
+.hero-figure figcaption {
+  text-align: center; color: var(--muted); font-size: 0.92rem;
+  margin-top: 0.9rem; line-height: 1.55; max-width: 900px; margin-left: auto; margin-right: auto;
+}
+.section-mmtb { padding: 3.5rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+.section-mmtb h2 {
+  font-weight: 700; font-size: 1.8rem; letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+.section-mmtb p { font-size: 1.05rem; line-height: 1.75; color: #2A2A2A; }
+.results-table { font-size: 0.95rem; margin: 1rem 0; }
+.results-table th, .results-table td { padding: 0.55rem 0.75rem; }
+.results-table thead th { color: var(--muted); font-weight: 600; }
+.results-table .num { font-variant-numeric: tabular-nums; text-align: right; }
+.results-table tbody tr.highlight { background: var(--accent-soft); }
+.results-table tbody tr.highlight td { font-weight: 600; }
+.bibtex-block {
+  position: relative; background: #1F2430; color: #CDD3DE;
+  padding: 1.4rem 1.6rem; border-radius: 8px; overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.55;
+}
+.bibtex-block pre { background: transparent; color: inherit; padding: 0; margin: 0; }
+.copy-btn {
+  position: absolute; top: 0.7rem; right: 0.7rem;
+  background: rgba(255,255,255,0.10); color: #CDD3DE;
+  border: none; border-radius: 6px; padding: 0.3rem 0.7rem;
+  cursor: pointer; font-size: 0.8rem;
+}
+.copy-btn:hover { background: rgba(255,255,255,0.18); }
+.footer-mmtb {
+  border-top: 1px solid #E5E8EE; padding: 2rem 1.5rem; text-align: center;
+  color: var(--muted); font-size: 0.9rem;
+}
+.footer-mmtb a { color: var(--muted); text-decoration: underline; }
+@media (max-width: 768px) {
+  .title-mmtb { font-size: 1.8rem; }
+  .section-mmtb { padding: 2.5rem 1.25rem; }
+  .section-mmtb h2 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero-mmtb">
+  <h1 class="title-mmtb">
+    <span class="accent">MultiMedia-TerminalBench:</span><br>
+    Evaluating Terminal Agents on Multimedia-File Tasks
+  </h1>
+  <p class="subtitle-mmtb">
+    A Harbor-native benchmark of 105 tasks where terminal agents must understand
+    audio, video, and image content and turn that evidence into verifier-checkable
+    file artifacts.
+  </p>
+
+  <div class="authors">
+    Chiyeong Heo<sup>1</sup>,
+    Jaechang Kim<sup>1</sup>,
+    Junhyuk Kwon<sup>1</sup>,
+    Hoyoung Kim<sup>2</sup>,
+    Dongmin Park<sup>3</sup>,
+    Jonghyun Lee<sup>3</sup>,
+    Jungseul Ok<sup>1</sup>
+  </div>
+  <div class="affiliations">
+    <sup>1</sup> Graduate School of AI, POSTECH
+    &nbsp;·&nbsp;
+    <sup>2</sup> NAIRL
+    &nbsp;·&nbsp;
+    <sup>3</sup> Krafton AI
+  </div>
+
+  <div class="link-row">
+    <a class="link-pill" href="#" id="paper-link" aria-label="arXiv preprint">
+      <i class="fas fa-file-pdf"></i> arXiv (TBA)
+    </a>
+    <a class="link-pill outline" href="https://github.com/mm-tbench/multimedia-terminal-bench" aria-label="Code repository">
+      <i class="fab fa-github"></i> Code
+    </a>
+    <a class="link-pill outline" href="https://huggingface.co/datasets/mm-tbench/mmtb-media" aria-label="Dataset on Hugging Face">
+      <i class="fas fa-database"></i> Dataset
+    </a>
+    <a class="link-pill outline" href="#bibtex" aria-label="Citation">
+      <i class="fas fa-quote-right"></i> BibTeX
+    </a>
+  </div>
+
+  <figure class="hero-figure">
+    <img src="static/images/figure1.png" alt="An example MMTB task showing how a terminal agent must merge multiple video and audio files using either native multimedia perception or command-line conversion tools.">
+    <figcaption>
+      <strong>An example MMTB task.</strong> The task asks the agent to assemble three videos and one audio file into a single edited artifact.
+      A native-multimodal agent (top) reads the raw media directly through perception tools.
+      A text-only terminal agent (bottom) reaches the same evidence through command-line conversion tools (OCR, ASR, motion-energy), adding processing steps that introduce inefficiency and errors.
+    </figcaption>
+  </figure>
+</header>
+
+<section class="section-mmtb">
+  <h2>Abstract</h2>
+  <p>
+    Terminals provide a powerful interface for AI agents by exposing diverse tools for automating complex workflows,
+    yet existing terminal-agent benchmarks largely focus on tasks grounded in text, code, and structured files.
+    However, many real-world workflows require practitioners to work directly with audio and video files.
+    Working with such multimedia files calls for terminal agents not only to understand multimedia content,
+    but also to convert auditory and visual evidence across related files into appropriate actions.
+    To evaluate terminal agents on multimedia-file tasks, we introduce <strong>MultiMedia-TerminalBench (MMTB)</strong>,
+    a benchmark of 105 tasks across 5 meta-categories where terminal agents directly operate with audio and video files.
+    Alongside MMTB, we propose <strong>Terminus-MM</strong>, a multimedia harness that extends Terminus-KIRA with
+    audio and video perception for terminal agents. Together, MMTB and Terminus-MM support a controlled study of
+    multimedia terminal agents, revealing how different forms of multimedia access shape task outcomes and determine
+    which evidence agents rely on to construct executable terminal workflows.
+  </p>
+</section>
+
+<section class="section-mmtb" id="results">
+  <h2>Headline results</h2>
+  <p>
+    Across 105 tasks, the gap between native multimedia perception and conversion-tool workflows is substantial.
+    Terminus-MM with Gemini&nbsp;3.1&nbsp;Pro reaches the highest binary success rate (37.1%) and partial credit (46.9%),
+    outperforming both the text-only baseline on the same backbone and Codex&nbsp;CLI with GPT&nbsp;5.2 on the same task suite.
+  </p>
+
+  <div class="table-container">
+    <table class="table is-striped is-fullwidth results-table">
+      <thead>
+        <tr>
+          <th>Harness</th>
+          <th>Backbone</th>
+          <th>Tools</th>
+          <th class="num">Binary&nbsp;↑</th>
+          <th class="num">Partial&nbsp;↑</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Terminus-2</td>     <td>Gemini-3.1-Pro</td><td>text only</td>            <td class="num">0.124</td><td class="num">0.162</td></tr>
+        <tr><td>Terminus-KIRA</td>  <td>Gemini-3.1-Pro</td><td>+ image</td>              <td class="num">0.105</td><td class="num">0.159</td></tr>
+        <tr><td>Terminus-A</td>     <td>Gemini-3.1-Pro</td><td>+ audio</td>              <td class="num">0.257</td><td class="num">0.349</td></tr>
+        <tr><td>Terminus-IA</td>    <td>Gemini-3.1-Pro</td><td>+ image + audio</td>      <td class="num">0.333</td><td class="num">0.406</td></tr>
+        <tr><td>Terminus-IV</td>    <td>Gemini-3.1-Pro</td><td>+ image + video</td>      <td class="num">0.333</td><td class="num">0.432</td></tr>
+        <tr class="highlight"><td>Terminus-MM</td><td>Gemini-3.1-Pro</td><td>+ image + audio + video</td><td class="num">0.371</td><td class="num">0.469</td></tr>
+        <tr><td>Claude Code</td>    <td>Sonnet-4.6</td>     <td>+ image</td>              <td class="num">0.162</td><td class="num">0.186</td></tr>
+        <tr><td>Codex CLI</td>      <td>GPT-5.2</td>        <td>+ image</td>              <td class="num">0.162</td><td class="num">0.202</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size: 0.92rem; color: var(--muted); margin-top: 0.5rem;">
+    Mean over 105 tasks. Binary&nbsp;= verifier-passing artifact match. Partial&nbsp;= task-specific partial-credit score.
+    See the paper for cost, latency, modality-masking, and per-category breakdowns.
+  </p>
+</section>
+
+<section class="section-mmtb">
+  <h2>What MMTB tests</h2>
+  <p>
+    MMTB tasks each hand the agent a working directory of image, audio, or video files and require a checkable
+    artifact: a selected file, a timestamped segment, a structured JSON or CSV record, an edit list, or a processed
+    media clip. Tasks are designed so that a typical
+    <code>ffprobe → ffmpeg → frame/ASR → output</code> shell pipeline cannot reach the right answer without
+    genuine cross-modal perception. The 105 tasks span five meta-categories: media production,
+    performance &amp; coaching, enterprise &amp; compliance, personal &amp; education, and operations &amp; research.
+  </p>
+</section>
+
+<section class="section-mmtb" id="bibtex">
+  <h2>BibTeX</h2>
+  <div class="bibtex-block">
+    <button class="copy-btn" type="button" onclick="copyBibtex()">Copy</button>
+<pre id="bibtex-text">@misc{mmtb2026,
+  title         = {MultiMedia-TerminalBench: A Benchmark for Terminal Agents with Multimedia Perception},
+  author        = {Heo, Chiyeong and Kim, Jaechang and Kwon, Junhyuk and Kim, Hoyoung and Park, Dongmin and Lee, Jonghyun and Ok, Jungseul},
+  year          = {2026},
+  eprint        = {XXXX.XXXXX},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {arXiv preprint, URL TBA}
+}</pre>
+  </div>
+</section>
+
+<footer class="footer-mmtb">
+  <p>
+    Built on the <a href="https://github.com/harbor-framework/harbor">Harbor</a> task format
+    &nbsp;·&nbsp;
+    <a href="https://github.com/mm-tbench/multimedia-terminal-bench">Code</a>
+    &nbsp;·&nbsp;
+    <a href="https://huggingface.co/datasets/mm-tbench/mmtb-media">Dataset</a>
+  </p>
+  <p style="margin-top: 0.6rem;">© 2026 The MMTB Authors. Released under MIT.</p>
+</footer>
+
+<script>
+function copyBibtex() {
+  const text = document.getElementById('bibtex-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.innerText;
+    btn.innerText = 'Copied!';
+    setTimeout(() => { btn.innerText = orig; }, 1400);
+  });
+}
+</script>
+</body>
+</html>
