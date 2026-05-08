@@ -47,8 +47,16 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 .authors sup { color: var(--accent); font-weight: 600; }
 .affiliations {
   text-align: center; color: var(--muted); font-size: 0.95rem;
-  max-width: 900px; margin: 0 auto 1.8rem; line-height: 1.6;
+  max-width: 900px; margin: 0 auto 0.5rem; line-height: 1.6;
 }
+.contact {
+  text-align: center; color: var(--muted); font-size: 0.92rem;
+  max-width: 900px; margin: 0 auto 1.8rem; line-height: 1.6;
+  font-family: 'JetBrains Mono', monospace;
+}
+.contact a { color: var(--muted); border-bottom: 1px dotted var(--muted); text-decoration: none; }
+.contact a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.contact .fa-envelope { margin-right: 0.4rem; opacity: 0.7; }
 .link-row {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
   margin: 0 auto 2.5rem; max-width: 900px;
@@ -135,6 +143,11 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
     <sup>2</sup> NAIRL
     &nbsp;·&nbsp;
     <sup>3</sup> Krafton AI
+  </div>
+  <div class="contact">
+    <i class="far fa-envelope"></i>
+    <span>{<a href="mailto:chiyeongheo@postech.ac.kr">chiyeongheo</a>,
+    <a href="mailto:jungseul.ok@postech.ac.kr">jungseul.ok</a>}@postech.ac.kr</span>
   </div>
 
   <div class="link-row">
