@@ -1,0 +1,4 @@
+# Exclude internal-only files from `git archive` exports — used to keep
+# `_internal/` out of anonymized snapshots (anonymous.4open.science).
+_internal/ export-ignore
+_internal/** export-ignore

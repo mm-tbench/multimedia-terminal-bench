@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Acme Support Console</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --panel:#fff; --line:#dde2eb; --line2:#e8ecf3;
+    --txt:#1f2530; --muted:#6b7280; --accent:#2563eb; --accent-bg:#eff5ff;
+    --green:#15803d; --green-bg:#dcfce7;
+    --amber:#a16207; --amber-bg:#fef3c7;
+    --red:#b91c1c; --red-bg:#fee2e2;
+    --slate:#475569; --slate-bg:#e2e8f0;
+    --purple:#6d28d9; --purple-bg:#ede9fe;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:13px;line-height:1.4;overflow:hidden}
+  .app{display:grid;grid-template-rows:50px 1fr 28px;grid-template-columns:280px 1fr 320px;height:100vh;width:100vw}
+
+  header{grid-column:1/4;background:#0f172a;color:#f1f5f9;display:flex;align-items:center;padding:0 16px;gap:14px;border-bottom:1px solid #1e293b}
+  .logo{font-weight:700;font-size:14px;color:#fff;display:flex;align-items:center;gap:8px}
+  .logo .dot{width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#3b82f6,#a855f7)}
+  .crumb{color:#cbd5e1;font-size:11px}
+  .crumb b{color:#fff;font-weight:600}
+  .live-tag{margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#7f1d1d;color:#fecaca;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .live-tag .dot2{width:7px;height:7px;border-radius:50%;background:#fca5a5;animation:pulse 1.6s infinite ease-in-out}
+  @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+  .avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#fb7185,#f59e0b);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+
+  /* LEFT: customer list */
+  aside.list{grid-row:2;grid-column:1;background:#fff;border-right:1px solid var(--line);overflow:hidden;padding:10px 0}
+  .list-head{display:flex;align-items:center;padding:6px 14px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+  .list-head .count{margin-left:auto;background:#f1f5f9;color:#64748b;border-radius:10px;padding:0 7px;font-size:10px;font-weight:600}
+  .cust{padding:10px 14px;border-left:3px solid transparent;cursor:default}
+  .cust.active{background:var(--accent-bg);border-left-color:var(--accent)}
+  .cust .nm{font-weight:600;font-size:13px;color:#1f2530}
+  .cust .id{font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;color:var(--muted);margin-top:2px}
+  .cust .meta{font-size:11px;color:#64748b;margin-top:3px}
+  .cust .meta .pill{display:inline-block;font-size:9px;padding:1px 5px;border-radius:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-left:4px}
+  .p-green{background:var(--green-bg);color:var(--green)}
+  .p-amber{background:var(--amber-bg);color:var(--amber)}
+  .p-red{background:var(--red-bg);color:var(--red)}
+
+  /* CENTER: customer detail */
+  main{grid-row:2;grid-column:2;display:flex;flex-direction:column;overflow:hidden;padding:0}
+  .cust-head{padding:14px 18px 0;display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px}
+  .cust-head .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#22d3ee,#a855f7);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+  .cust-head .info{flex:1}
+  .cust-head .nm-l{font-size:18px;font-weight:700;letter-spacing:-0.01em}
+  .cust-head .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .cust-head .id-l{font-family:'JetBrains Mono','Menlo',monospace;font-size:11px;color:var(--muted)}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);font-size:12px;padding:0 18px}
+  .tab{padding:10px 14px;color:var(--muted);border-bottom:2px solid transparent;cursor:default;font-weight:500}
+  .tab.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+  .tab-body{flex:1;overflow:hidden;padding:14px 18px}
+  .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line2);font-size:12px}
+  .row .k{color:var(--muted);font-weight:500;min-width:140px}
+  .row .v{color:#1f2530;font-family:'JetBrains Mono','Menlo',monospace;font-size:11px}
+  .actions{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--line);background:#fafbfd}
+  .btn{padding:7px 14px;border:1px solid var(--line);border-radius:5px;background:#fff;font-size:12px;color:var(--txt);font-weight:500;cursor:default}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  .btn.danger{background:#dc2626;color:#fff;border-color:#dc2626;font-weight:600}
+  .btn.warn{background:#f59e0b;color:#fff;border-color:#f59e0b;font-weight:600}
+  .check-row{display:flex;align-items:center;gap:8px;font-size:12px;padding:6px 0}
+  .check-row .cb{display:inline-block;width:13px;height:13px;border:1.5px solid #cbd5e1;border-radius:3px}
+  .check-row.on .cb{background:var(--accent);border-color:var(--accent);position:relative}
+
+  /* RIGHT: call status */
+  aside.right{grid-row:2;grid-column:3;background:#fafbfd;border-left:1px solid var(--line);overflow:hidden;padding:14px 14px}
+  aside.right h3{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:8px;font-weight:700}
+  .call-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px}
+  .call-card .num{font-family:'JetBrains Mono','Menlo',monospace;font-size:13px;color:#1f2530;font-weight:600}
+  .call-card .timer{font-size:24px;font-family:'JetBrains Mono','Menlo',monospace;font-weight:700;color:#15803d;margin-top:4px}
+  .call-card .meta{font-size:11px;color:var(--muted);margin-top:6px}
+  .ck-list{margin-top:12px}
+  .ck-list .ck{background:#fff;border:1px solid var(--line);border-radius:5px;padding:7px 10px;font-size:11px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+  .ck-list .ck .label{font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;color:#475569}
+  .ck-list .ck .stat{font-size:10px;font-weight:600;text-transform:uppercase;color:var(--muted)}
+
+  /* FOOTER */
+  footer{grid-column:1/4;grid-row:3;background:#1e293b;color:#94a3b8;font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;padding:0 14px;display:flex;align-items:center;gap:14px;border-top:1px solid #0f172a;letter-spacing:.01em}
+  footer .seg b{color:#cbd5e1;font-weight:500}
+  footer .seg.path{color:#a3e635}
+  footer .right-meta{margin-left:auto;color:#64748b}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header data-id="app-header">
+  <div class="logo" data-id="brand-logo"><span class="dot"></span> Acme&nbsp;Support</div>
+  <div class="crumb">Support Console &nbsp;/&nbsp; <b>Active Call</b></div>
+  <span class="live-tag"><span class="dot2"></span>Recording</span>
+  <span class="avatar" data-id="hdr-avatar">JK</span>
+</header>
+
+<aside class="list" data-id="cust-list">
+  <div class="list-head">Open queue <span class="count">5</span></div>
+  <div class="cust" data-id="cust-row-tnyo">
+    <div class="nm">Tara Nyong'o</div>
+    <div class="id">id: cust-tnyong-2204</div>
+    <div class="meta">acct: pro-tier <span class="pill p-green">verified</span></div>
+  </div>
+  <div class="cust active" data-id="cust-row-jptl">
+    <div class="nm">James Patel</div>
+    <div class="id">id: cust-jpatel-1841</div>
+    <div class="meta">acct: enterprise <span class="pill p-red" data-id="r-jptl-status-pill">payment-failed</span></div>
+  </div>
+  <div class="cust" data-id="cust-row-mhcs">
+    <div class="nm">Malia Hicks</div>
+    <div class="id">id: cust-mhicks-3308</div>
+    <div class="meta">acct: pro-tier <span class="pill p-green">verified</span></div>
+  </div>
+  <div class="cust" data-id="cust-row-rqui">
+    <div class="nm">Robin Quinones</div>
+    <div class="id">id: cust-rquino-4071</div>
+    <div class="meta">acct: starter <span class="pill p-red">payment-failed</span></div>
+  </div>
+  <div class="cust" data-id="cust-row-akhn">
+    <div class="nm">Aleksei Khan</div>
+    <div class="id">id: cust-akhan-5520</div>
+    <div class="meta">acct: pro-tier <span class="pill p-green">verified</span></div>
+  </div>
+</aside>
+
+<main data-id="cust-detail">
+  <div class="cust-head">
+    <span class="av">JP</span>
+    <div class="info">
+      <div class="nm-l" data-id="cust-name">James Patel</div>
+      <div class="sub" data-id="cust-sub">Enterprise tier · joined 2024-08-12 · primary contact</div>
+      <div class="id-l" data-id="cust-id-label">id: cust-jpatel-1841</div>
+    </div>
+  </div>
+  <div class="tabs" data-id="tabs">
+    <span class="tab on" data-id="tab-profile">Profile</span>
+    <span class="tab" data-id="tab-product">Product</span>
+    <span class="tab" data-id="tab-billing">Billing</span>
+    <span class="tab" data-id="tab-notes">Notes</span>
+  </div>
+  <div class="tab-body" data-id="tab-body">
+    <div class="row" data-id="row-acct"><span class="k">Account number</span><span class="v">ACME-ENT-2024-0814-JP</span></div>
+    <div class="row" data-id="row-email"><span class="k">Primary email</span><span class="v">james.patel@boreal-foods.example</span></div>
+    <div class="row" data-id="row-phone"><span class="k">Primary phone</span><span class="v">+1 (415) 555-0142</span></div>
+    <div class="row" data-id="row-tier"><span class="k">Tier</span><span class="v">enterprise</span></div>
+    <div class="row" data-id="row-since"><span class="k">Customer since</span><span class="v">2024-08-12</span></div>
+    <div class="row" data-id="row-csm"><span class="k">CSM</span><span class="v">M. Okafor</span></div>
+    <div class="row" data-id="row-acct-status"><span class="k">Account status</span><span class="v" style="color:#b91c1c;font-weight:700;letter-spacing:.04em">PAYMENT FAILED — last billing cycle</span></div>
+    <div class="row" data-id="row-open-refund"><span class="k">Open refund amount</span><span class="v" style="color:#0f172a;font-weight:700">$1,742.00</span></div>
+    <div class="check-row" data-id="check-recording-consent"><span class="cb"></span> Recording consent acknowledged</div>
+    <div class="check-row" data-id="check-identity-verified"><span class="cb"></span> Identity verified (last 4 of acct)</div>
+  </div>
+  <div class="actions">
+    <button class="btn" data-id="btn-edit">Edit</button>
+    <button class="btn warn" data-id="btn-suspend">Suspend account</button>
+    <button class="btn danger" data-id="btn-refund">Issue refund</button>
+    <button class="btn primary" data-id="btn-escalate">Escalate to T2</button>
+  </div>
+</main>
+
+<aside class="right" data-id="call-panel">
+  <h3>Active call</h3>
+  <div class="call-card" data-id="call-card">
+    <div class="num" data-id="call-number">+1 (415) 555-0142</div>
+    <div class="timer" data-id="call-timer">00:01:23</div>
+    <div class="meta" data-id="call-meta">CID: cust-jpatel-1841 · Q3 escalation queue</div>
+  </div>
+  <h3 style="margin-top:14px">Compliance checks</h3>
+  <div class="ck-list" data-id="ck-list">
+    <div class="ck" data-id="ck-disclose-rec"><span class="label">CK01 · disclose-recording</span><span class="stat">pending</span></div>
+    <div class="ck" data-id="ck-verify-identity"><span class="label">CK02 · verify-identity</span><span class="stat">pending</span></div>
+    <div class="ck" data-id="ck-refund-auth"><span class="label">CK03 · refund-auth</span><span class="stat">pending</span></div>
+  </div>
+</aside>
+
+<footer data-id="footer-status">
+  <span class="seg path">[ inspector ]</span>
+  <span class="seg" data-id="footer-hover-line">hovered: <b data-id="footer-id">none</b></span>
+  <span class="right-meta" data-id="footer-meta">workstation WS-274 · session #f81d</span>
+</footer>
+
+</div>
+</body>
+</html>

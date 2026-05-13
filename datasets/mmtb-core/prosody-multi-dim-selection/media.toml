@@ -1,0 +1,202 @@
+schema_version = "1.0"
+
+# prosody-multi-dim-selection — 18 takes of the same scripted line
+# spanning 2 actors × 3 emotions × 3 intensities. Designed as a
+# harder escalation of T083 (prosody-take-selection) in which MM
+# solved the 6-take single-emotion pick in 1:52 via native audio.
+# This task forces joint 3-D discrimination (actor gender + emotion
+# + intensity) across 18 candidates.
+#
+# Source: CREMA-D (Cao et al. 2014, ODbL 1.0) — real crowd-sourced
+# emotional recordings. Actor 1001 (male, 51 y) + actor 1002 (female,
+# 21 y), sentence IEO ("It's eleven o'clock"), 3 emotions (HAP / ANG
+# / SAD) × 3 intensities (LO / MD / HI).
+#
+# All 18 takes are loudness-normalized to -18 LUFS (EBU R128) via
+# (per-file detail not disclosed in this manifest)
+# Filenames are shuffled under SEED=20260423.
+#
+# (per-file detail not disclosed in this manifest)
+# is 1/18 ≈ 5.6 %.
+#
+# Build recipe: datasets/sample-media/crema-d/build_t090.py.
+
+[[media]]
+output = "takes/take_01.wav"
+sha256 = "afb676de88ffaef5f1cdb7c05b0a343703729e19828157bb88647098c11daf88"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_02.wav"
+sha256 = "06a0807eaca3b450b83e737cc55a89b844bb06a7ff623a0c843b1fa853752190"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_03.wav"
+sha256 = "3e26b64ca8e57ba885b85498b25eb7ddf82071f46ec69717851eb461e4b30cdb"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_04.wav"
+sha256 = "a91866ac50aaf9815a6c21984c91343ee419ee6385ea275f9977c8a1cb64bb05"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_05.wav"
+sha256 = "bd980b103d8fcaef5bd0116d41933cb6f2b74e4da623311f79f30e569bcb9ff0"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_06.wav"
+sha256 = "55487937f601832a8636d078922c4357ff1bb3bb46490ea22a64e190f1de124b"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_07.wav"
+sha256 = "5f4eb39a6a99473c4a7f82f30468ee9e2c937a9c5bc4bd90eca7d4ae3ebc73f1"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_08.wav"
+sha256 = "ddee9a2c99a463f89277332a348ef5c53c6c4b83415b3e5e1d254e3b3336d2ca"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_09.wav"
+sha256 = "a632faf65f737a8f4f8ca503ad2dd3f16235f0bd15de6632ffb97d7eef2e493f"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_10.wav"
+sha256 = "790ed5ebd52e6055c38d8e5a0053fd2c9cd80cd3ecf3d8da107911323c845bb4"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_11.wav"
+sha256 = "5e68e038e08010f4d79c471d72829da3492b5c0233fe272be9ef5649c6fd7044"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_12.wav"
+sha256 = "146b279b2bcb3dae2d8b5eaeccfacd13d53daaba3fd1b57bb6abc4ae33e3afda"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_13.wav"
+sha256 = "5cbc2ab1f261c8c687113ecf016e6a6f001655e000a40439e2f64a7bb89a7ab1"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_14.wav"
+sha256 = "e61357c034c580a8e695a168747aad1b6a4a8b5731e2c7ef655f4c261bf73b08"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_15.wav"
+sha256 = "41ac166d739d6a38dc94d312459db7342bac6ae405871fd530d844396899c8c7"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_16.wav"
+sha256 = "3779391cc2a35a7f7f1bdb55b58ce75abdf8a45701c221789cf2fb09eec36fad"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_17.wav"
+sha256 = "ebd8ca1253abb14d699a76b15c158122008b31e0a5a352282901ce34ca31ed35"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "takes/take_18.wav"
+sha256 = "b8551f4989743b8fd976877e2c397dde2cb6d6ce07a0609dfe45cddf6a2c999a"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "One of CREMA-D actor 1001/1002 × HAP/ANG/SAD × LO/MD/HI variants for sentence IEO, loudness-normalized to -18 LUFS. See meta.json (gitignored; in sample-media/crema-d/out_t090/) for the full mapping."
+
+[[media]]
+output = "script.txt"
+sha256 = "34bb81633e1d18eea9f4772facda0218b70896b35647806c3dc1d244afcedb7f"
+
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "The scripted line ('It's eleven o'clock.') — plain text authored for the task brief."
+
+[[media]]
+output = "brief.md"
+sha256 = "93743fc17a434b409be021f4b56dc2b7c4b244060ec1d243435e2a2de022c28d"
+
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "Voice-director brief specifying the 3-D target (male actor, angry, restrained / low intensity)."

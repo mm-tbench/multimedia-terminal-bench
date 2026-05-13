@@ -1,0 +1,122 @@
+{
+  "script_words": [
+    {
+      "word_index": 0,
+      "word": "YOU",
+      "canonical_phones": [
+        "Y",
+        "UW0"
+      ]
+    },
+    {
+      "word_index": 1,
+      "word": "HAVE",
+      "canonical_phones": [
+        "HH",
+        "AE0",
+        "V"
+      ]
+    },
+    {
+      "word_index": 2,
+      "word": "TO",
+      "canonical_phones": [
+        "T",
+        "UW0"
+      ]
+    },
+    {
+      "word_index": 3,
+      "word": "CHANGE",
+      "canonical_phones": [
+        "CH",
+        "EY0",
+        "N",
+        "JH"
+      ]
+    },
+    {
+      "word_index": 4,
+      "word": "WITH",
+      "canonical_phones": [
+        "W",
+        "IH0",
+        "TH"
+      ]
+    },
+    {
+      "word_index": 5,
+      "word": "THEM",
+      "canonical_phones": [
+        "DH",
+        "EH0",
+        "M"
+      ]
+    },
+    {
+      "word_index": 6,
+      "word": "OR",
+      "canonical_phones": [
+        "AO0"
+      ]
+    },
+    {
+      "word_index": 7,
+      "word": "BE",
+      "canonical_phones": [
+        "B",
+        "IY0"
+      ]
+    },
+    {
+      "word_index": 8,
+      "word": "LEFT",
+      "canonical_phones": [
+        "L",
+        "EH0",
+        "F",
+        "T"
+      ]
+    },
+    {
+      "word_index": 9,
+      "word": "BEHIND",
+      "canonical_phones": [
+        "B",
+        "IH0",
+        "HH",
+        "AY1",
+        "N",
+        "D"
+      ]
+    }
+  ],
+  "phone_inventory": [
+    "AE",
+    "AO",
+    "AY",
+    "B",
+    "CH",
+    "D",
+    "DH",
+    "EH",
+    "EY",
+    "F",
+    "HH",
+    "IH",
+    "IY",
+    "JH",
+    "L",
+    "M",
+    "N",
+    "T",
+    "TH",
+    "UW",
+    "V",
+    "W",
+    "Y",
+    "<DEL>",
+    "<unk>"
+  ],
+  "notes": "ARPABET phone symbols (without stress marker). canonical_phones for each script word as the dataset annotates them."
+}

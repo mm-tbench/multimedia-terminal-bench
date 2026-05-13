@@ -1,0 +1,40 @@
+{
+  "flags": [
+    {
+      "clip": "clip_01.mp4",
+      "start": 9.0,
+      "end": 13.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    },
+    {
+      "clip": "clip_01.mp4",
+      "start": 22.0,
+      "end": 26.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    },
+    {
+      "clip": "clip_02.mp4",
+      "start": 11.0,
+      "end": 15.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    },
+    {
+      "clip": "clip_03.mp4",
+      "start": 4.0,
+      "end": 9.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    },
+    {
+      "clip": "clip_03.mp4",
+      "start": 20.0,
+      "end": 24.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    },
+    {
+      "clip": "clip_04.mp4",
+      "start": 12.0,
+      "end": 17.0,
+      "mismatch_type": "voiceover_during_lip_motion"
+    }
+  ]
+}

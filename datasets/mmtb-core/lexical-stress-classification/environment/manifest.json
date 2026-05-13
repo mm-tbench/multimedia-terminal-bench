@@ -1,0 +1,90 @@
+{
+  "utterances": [
+    {
+      "utterance_id": "U1",
+      "audio_file": "U1.wav",
+      "transcript": "SO I WENT AWAY AND SAID NOTHING",
+      "target_words": [
+        {
+          "word_index": 2,
+          "word": "WENT"
+        },
+        {
+          "word_index": 3,
+          "word": "AWAY"
+        },
+        {
+          "word_index": 4,
+          "word": "AND"
+        },
+        {
+          "word_index": 5,
+          "word": "SAID"
+        },
+        {
+          "word_index": 6,
+          "word": "NOTHING"
+        }
+      ]
+    },
+    {
+      "utterance_id": "U2",
+      "audio_file": "U2.wav",
+      "transcript": "WAS IT POSSIBLE TO INTERPRET THEM TO ANY USEFUL PURPOSE?",
+      "target_words": [
+        {
+          "word_index": 0,
+          "word": "WAS"
+        },
+        {
+          "word_index": 2,
+          "word": "POSSIBLE"
+        },
+        {
+          "word_index": 4,
+          "word": "INTERPRET"
+        },
+        {
+          "word_index": 5,
+          "word": "THEM"
+        },
+        {
+          "word_index": 7,
+          "word": "ANY"
+        },
+        {
+          "word_index": 8,
+          "word": "USEFUL"
+        },
+        {
+          "word_index": 9,
+          "word": "PURPOSE"
+        }
+      ]
+    },
+    {
+      "utterance_id": "U3",
+      "audio_file": "U3.wav",
+      "transcript": "SERIOUSLY THIS IS GETTING OUT OF CONTROL",
+      "target_words": [
+        {
+          "word_index": 0,
+          "word": "SERIOUSLY"
+        },
+        {
+          "word_index": 1,
+          "word": "THIS"
+        },
+        {
+          "word_index": 3,
+          "word": "GETTING"
+        },
+        {
+          "word_index": 6,
+          "word": "CONTROL"
+        }
+      ]
+    }
+  ],
+  "task_notes": "For each target word listed, decide whether the speaker placed lexical stress on the correct syllable. Most multisyllabic English words have a single stressed syllable; mis-stressing changes both rhythm and (sometimes) the perceived word. Output stress_correct=true if the realised stress matches a standard American or British pronunciation; false if it sits on the wrong syllable / is misplaced relative to canonical stress."
+}

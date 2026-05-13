@@ -1,0 +1,18 @@
+schema_version = "1.0"
+
+# Synthetic Kanban screen-share recording. Playwright-rendered 1600x900
+# sprint-board page (15 cards across 5 columns, inspector footer) with
+# realistic cursor motion library (MoveTo / Rest / Circle / Underline /
+# IdleDrift) — speaker circles, underlines, idle-drifts, deliberately
+# emphasizing decoy cards so cursor-only baselines are misled. Audio is
+# single-narrator Kokoro-82M (am_michael). Build recipe lives in
+# build_assets.py.
+
+[[media]]
+output = "recording.webm"
+sha256 = "9d1512c0bca7a56680ccc1873af7a5b4bb5041d905473e3e2c7ba19dae5bd6a4"
+
+[media.source]
+type = "synthetic"
+description = "Playwright-rendered Kanban sprint board with effort/days/capacity widgets (1600x900, 30fps, ~95 s); cursor motion library with circle/underline/idle-drift interactions; Kokoro-82M TTS narration."
+license = "Apache-2.0"

@@ -1,0 +1,32 @@
+schema_version = "1.0"
+
+# T043 semantic-chaptering.
+#
+# 23:40 lecture clip trimmed deterministically by
+# datasets/sample-media/_staging/t043_chaptering/build_personality_clip.py
+# from the CC-BY William Fisher CopyrightX "2-3 fairness and personality"
+# lecture (HarvardX), starting at original-source-t=230s (the start of the
+# Personality section). Re-encoded at 1280x720 H.264 / mono AAC, container
+# metadata stripped, deterministic with +bitexact.
+#
+# Gold chapter starts in trimmed timeline (new_t):
+#   0.0    -- Personality theory intro
+#   40.3   -- "Human needs" enumeration begins (1. Peace of Mind)
+#   378.0  -- Gary Larson cartoon case study
+#   598.0  -- Personhood theory of IP / moral rights section
+#
+# Boundaries are detectable from EITHER modality alone (whisper-detectable
+# verbal cues + mind-map slide-highlight changes). The structural test is
+# precise boundary timing (+/-2s tolerance) over a 23-minute clip rather
+# than enforcing strict joint-AV requirement.
+
+[[media]]
+output = "lecture.mp4"
+sha256 = "6cd66a406c3dca3aefe3e833684e1b3cb9c1eabb4a30660a625237da7feffdad"
+
+[media.source]
+type = "synthetic"
+description = """Trimmed 23:40 segment of the HarvardX/CopyrightX William Fisher \
+"2-3 fairness and personality" lecture (CC-BY 4.0), starting at original-source-t=230s. \
+Re-encoded at 1280x720 H.264 / mono AAC; container metadata stripped; deterministic +bitexact."""
+license = "CC-BY-4.0"

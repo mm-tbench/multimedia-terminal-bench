@@ -1,0 +1,4 @@
+# Files to copy into new worktrees (only gitignored files are copied).
+# Tracked files are always present via git checkout.
+.env
+.env.local

@@ -1,0 +1,38 @@
+schema_version = "1.0"
+
+# T026 narration-mars-rover.
+#
+# 3:09 NASA Mars Rover panorama narrated public-domain clip,
+# deterministically re-encoded with whisper-derived burned-in subtitles
+# by datasets/sample-media/_staging/t026_mars_rover/build_subtitled_video.py.
+#
+# 4 of the burned-in captions have been DELIBERATELY MODIFIED to disagree
+# with the spoken narration:
+#
+#   t = 8.74-13.10   audio: "almost 1,200 individual images taken over four days"
+#                    caption: "almost 12,000 individual images taken over four hours"
+#
+#   t = 22.68-26.46  audio: "nearly 1.8 billion pixels"
+#                    caption: "nearly 18 million pixels"
+#
+#   t = 45.36-49.68  audio: "20 miles away is Slangpost crater"
+#                    caption: "200 miles away is Slangpost crater"
+#
+#   t = 165.66-170.48 audio: "Even after seven years on Mars, Curiosity is not done making tracks yet"
+#                     caption: "Even after twenty years on Mars, Curiosity is finished making tracks"
+#
+# Detecting these requires JOINT audio-visual reasoning: audio alone
+# transcribes correctly, visual alone reads captions; only the cross-
+# modal diff exposes mismatches.
+
+[[media]]
+output = "lecture.mp4"
+sha256 = "c5e0081f3369c600c147a4427ead559d8db23456fa986478b1ea3893bf89878a"
+
+[media.source]
+type = "synthetic"
+description = """Deterministic re-encode of NASA Mars-rover panorama narrated public-domain clip \
+at 1280x720 H.264 / mono AAC 128kbps with burned-in subtitles derived from \
+whisper-tiny transcription, where 4 captions have been modified to disagree \
+semantically with the spoken narration. Container metadata stripped, +bitexact."""
+license = "Public Domain (NASA)"

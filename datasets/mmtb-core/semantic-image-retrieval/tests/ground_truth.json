@@ -1,0 +1,95 @@
+{
+  "queries": {
+    "q1": "A red double-decker bus at night on a wet city street, with rain reflections on the pavement.",
+    "q2": "A close-up of a bee perched on a purple lavender flower, with a blurred green background.",
+    "q3": "A classic black steam locomotive on railroad tracks, with thick dark smoke billowing from its chimney and green trees in the background.",
+    "q4": "A single hot air balloon floating above a rural countryside landscape of green fields and hedgerows.",
+    "q5": "A lighthouse on a coastal pier with enormous waves crashing violently against it under a stormy sky."
+  },
+  "gold": {
+    "q1": "img_033.jpg",
+    "q2": "img_007.jpg",
+    "q3": "img_013.jpg",
+    "q4": "img_048.jpg",
+    "q5": "img_012.jpg"
+  },
+  "distractors": {
+    "q1": [
+      "img_028.jpg",
+      "img_021.jpg",
+      "img_006.jpg"
+    ],
+    "q2": [
+      "img_041.jpg",
+      "img_045.jpg",
+      "img_004.jpg"
+    ],
+    "q3": [
+      "img_044.jpg",
+      "img_014.jpg",
+      "img_047.jpg"
+    ],
+    "q4": [
+      "img_049.jpg",
+      "img_036.jpg",
+      "img_032.jpg"
+    ],
+    "q5": [
+      "img_031.jpg",
+      "img_039.jpg",
+      "img_026.jpg"
+    ]
+  },
+  "sha256": {
+    "img_001.jpg": "92accd4c6f32cd2a46132eaa9e287d2f7c5dd29a58055540ee034ceed068c50e",
+    "img_002.jpg": "051593f6e8a69d849250b741aaf609eb7c49e55b231a5a1a34752a425176d22f",
+    "img_003.jpg": "21a514876ff4e11eee952695aab519e0400f4bb4e50c2537ce5c5a8d1d74c980",
+    "img_004.jpg": "080a352d5958422675e6ba02f59c979e658b7f7dc2c07e11816be7ae6bc91d07",
+    "img_005.jpg": "b65848f0f7e0b0f80b18b3d3fc10737412b69a87ef03ea01e22c1fe854316d94",
+    "img_006.jpg": "a104ff2a1368401aa2d6a8bd18a29ac1d3f7c3121ec15521f2bc069020c41409",
+    "img_007.jpg": "8a0869ddd3f657069fc920dde722267685c11c675cd49922b0ff1793680d329e",
+    "img_008.jpg": "39f555f1118600514137e3f653c6cffcc1c45b07c2a01d32a2c74c09500eb7d4",
+    "img_009.jpg": "26d67417c61de8aa1ce08ab68c60527bbab0a843597ed430201ee99bc6ea40ad",
+    "img_010.jpg": "646457d7574667ff6296531eeada28c524531dc5a49cb7fb85da9b60caeeeb3d",
+    "img_011.jpg": "1084e4aa5e7fdcd4cd7f640abc44cc6c6566c2ee374a95c50fcd2c8abe7d8c5a",
+    "img_012.jpg": "891ad06aa5bc40589da588229ad9991af0446cfb21d3cc579cd4b78bcb346da7",
+    "img_013.jpg": "49889fb56f10363756d6a6affcfbd4a0e896ad43ae41bb5b7d58d9de9603189f",
+    "img_014.jpg": "3e79e2400755bca16fdd7b13129a06539724e888b45cb006ecb16f2444c01b64",
+    "img_015.jpg": "2d27b9978f06196abb35a235fc6d9b4c5b877d16f2b4fe3df27da644b35a6afb",
+    "img_016.jpg": "014e972709ac8625629a170d54dcfcf7e19f16b4ab71c89d1808e5ff31aa5f4c",
+    "img_017.jpg": "9c4ac96955c50a3adefcd449bd365a8fa003dd1d72c247ad886997d8f53de701",
+    "img_018.jpg": "e4e18efff5b91d687a63c6bc1a1541593e596ad342d1e1f288614d446556070c",
+    "img_019.jpg": "62ad8b54a47657d7ab85ae5502f6ae687d0a7c1c00ffd5aa1ae15e07df39fcc3",
+    "img_020.jpg": "28c328cbb6c16de646dc40dafc69a2830d76c99202efee64373fefeceafcf144",
+    "img_021.jpg": "ad82d6dfd8e894bc4524f73eec31087d12bf06ec759b06a5e6aa19fbb11cbc19",
+    "img_022.jpg": "333e122e0a96a0264b14280b1d3a2cc06f386a9787898558e8f0c43973791fc6",
+    "img_023.jpg": "40a6c5fe57382e699d1e2ec5b28ef5e50e5c0c1c64ef9e06ed8000d5e4182b73",
+    "img_024.jpg": "745e557dbebfde1111b1baef1a32c9eecba5225fc592c3ed086c313c08a5153d",
+    "img_025.jpg": "0e9abcbaa5b23236eec2b85b6a093938ed2b0796770a34f1c61c624c0cf7aa76",
+    "img_026.jpg": "5d39c04e28bead0ac8b972c2296c897dc0803acfca6cb18aeb44bd5ba14100ec",
+    "img_027.jpg": "98dd7b432b17b4b52613fc6d96a9ac3a0c01dfdca44d3214ea472cb48c6307bd",
+    "img_028.jpg": "fce8e226d0d25a882b45c18f176c41cd471ac01922af7b915147782a402ef887",
+    "img_029.jpg": "2c7f8d0c82d6ea76cc65da30ff9909813efc2712f16951097f25661e9157bf13",
+    "img_030.jpg": "492550505615c1feb46638471aa91fe25c6653490d9cc6707fe1318c1e728af7",
+    "img_031.jpg": "42c59cf89563d7f199ccec4ad28a943b205f47283690960ce93af7b98f53328b",
+    "img_032.jpg": "11c4956eecfd629c16e274a57e1c860a50d07d998e36dafd17bc8f55b9e8087e",
+    "img_033.jpg": "fcbb0548c0050ec72846c988c5b57054a8ac39c6624872991945294af9332b09",
+    "img_034.jpg": "3e0c44e12474f15ec8f715141e64d3efa6ac624c25f2bb12a514627631892fb7",
+    "img_035.jpg": "9a40c290e2bd21c261e2d350dd3e2b9fb9bbbc69d486997ea5117b53b9f07bfb",
+    "img_036.jpg": "6df80d84e58723df8330992cbfa86a8131a6abbf15d745c405d6981481ce8ca1",
+    "img_037.jpg": "b93d6ea0e38486c39827f6ecd58c6d1f7cd78defc8edf84160e4e7ab8de255dc",
+    "img_038.jpg": "15a15de5ed47ef6cffedc739acc88b4359b18a3b523f5a3b70d4accd786c9aa2",
+    "img_039.jpg": "e81b1979657b804b4a1b3fee32dee87b9ba1d32e3516de44de655272bdb70150",
+    "img_040.jpg": "43b2145854e75bae04748020574c4e45987d4ef3d140cd2710c91551ea688a8f",
+    "img_041.jpg": "f8a561c2b1520ab399ecc7c82b2d657c4fbdbc1a14e19feeda7c63a322673c1a",
+    "img_042.jpg": "bbd6347164e36717ef1fb47f2e0da7e046bc3684475c15faf040fb2f85bd6ee8",
+    "img_043.jpg": "3bf372e3a6bfab3c744d199cf0b264249a74bff146554860fc181b281f418533",
+    "img_044.jpg": "46e98924dca9461d88124290fd16ab10bc40436b811942bbf0751dc902929bea",
+    "img_045.jpg": "b5993eece489761103b8775c0a22dcc2b63dd9b921086a0692147f81016495f5",
+    "img_046.jpg": "97fb95f3b21bdd9ad0e0b518e530c842fda4474e316ebd9c6bcd5a43207e40d4",
+    "img_047.jpg": "4b2eaff501f64e1acabd87b91c7658975f52979ff42bebf45348c26c82136c32",
+    "img_048.jpg": "5051e5e9892db2a16ce25e303e1b25663b66599726f4f9c936fe38010dbb2f54",
+    "img_049.jpg": "b339646ba7fc629f03fb42c472a837fae3fcd85faed9f624fdc5f3df562454f5",
+    "img_050.jpg": "4f23388fb4f74fcd64c7d06655850c359a9a52d21af34b997807c9a17773c22b"
+  }
+}

@@ -1,0 +1,58 @@
+schema_version = "1.0"
+
+# safe-single-cue-keep (T016 v2) — 120-second 6-segment Acme CRM tutorial
+# in PRIVACY MODE. Captured by Playwright Chromium 1280x720 from a custom
+# HTML/CSS dashboard with reveal-on-click + 2.2s auto-redact mechanic
+# (same UI as T015 v3.1 av-privacy-exposure). Synced with Kokoro-82M
+# am_michael TTS narration.
+#
+# v1 (PR #108, closed) shipped a 7-segment patchwork of unrelated Blender
+# + NASA clips which user audit rejected as low-quality. v2 reuses the
+# T015 v3.1 CRM asset paradigm and produces a cohesive 120s tutorial
+# split into 6 × 20s segments for an EDL output.
+#
+# Per-segment design (each segment 20s, contains one narration event):
+#   seg_01 (0-20s,    REMOVE): Marcus + reveal address @ t=4 + speak
+#                              Marcus address (cross-modal exposure).
+#   seg_02 (20-40s,   KEEP):   Sarah + reveal phone @ t=24 + speak only
+#                              "I'll toggle the phone reveal" (visual-only).
+#   seg_03 (40-60s,   KEEP):   Diego, NO reveal triggered + speak Diego
+#                              phone in audio (audio-only).
+#   seg_04 (60-80s,   REMOVE): Aisha + reveal address @ t=64 + speak
+#                              Aisha address (cross-modal exposure).
+#   seg_05 (80-100s,  KEEP):   Marcus revisit + reveal address @ t=84 +
+#                              speak SARAH's address (cross-customer
+#                              mismatch — audio doesn't match visible).
+#   seg_06 (100-120s, REMOVE): Sarah revisit + reveal phone @ t=104 +
+#                              speak Sarah phone (cross-modal exposure).
+#
+# Joint AV lever: same as T015 v3.1 — reveal-on-click temporal precision
+# defeats random-frame extraction; cross-customer mismatch defeats per-
+# modality matching. Per-segment partitioning extends the lever to the
+# editor's EDL workflow (decide WHICH 20s segments to retain).
+#
+# Names + addresses + phones are FICTIONAL.
+
+[[media]]
+output = "source.mp4"
+sha256 = "5c317f22b777544b8cceececcc5d73b104ceb119bd16ee7228318490a99519a9"
+[media.source]
+type = "synthetic"
+license = "Apache-2.0"
+description = "120s Acme CRM PRIVACY MODE 6-segment tutorial. Built via Playwright Chromium 1280x720 capture of custom HTML/CSS CRM dashboard with reveal-on-click + 2.2s auto-redact, muxed with 7 Kokoro-82M am_michael TTS narration segments. 3 cross-modal exposure segments (REMOVE) + 3 distractor segments (KEEP: visual-only / audio-only / cross-customer mismatch)."
+
+[[media]]
+output = "segment_index.json"
+sha256 = "5daeca386bd44bab6291161da423b40bd8595aeffe62ff86392f1d5f21fba308"
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "Segment-boundary index for the 6 × 20s segments in source.mp4."
+
+[[media]]
+output = "policy.md"
+sha256 = "3eaddece74f6d2bedc87c0b1381522b0e4a1921373c9d2926766ed370097d756"
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "Compliance-edit policy: per-segment REMOVE if cross-modal PII exposure (reveal active + spoken value matches visible customer); KEEP otherwise (visual-only, audio-only, mismatch, or benign)."

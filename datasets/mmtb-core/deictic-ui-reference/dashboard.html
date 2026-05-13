@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Acme Internal — Refund Audit Queue</title>
+<style>
+  :root{
+    --bg:#f6f8fb; --panel:#ffffff; --line:#e3e7ee; --line2:#eef1f6;
+    --txt:#1f2530; --muted:#6b7280; --accent:#2563eb; --accent-bg:#eff5ff;
+    --green:#15803d; --green-bg:#dcfce7;
+    --amber:#a16207; --amber-bg:#fef3c7;
+    --red:#b91c1c; --red-bg:#fee2e2;
+    --slate:#475569; --slate-bg:#e2e8f0;
+    --purple:#6d28d9; --purple-bg:#ede9fe;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:13px;line-height:1.4;overflow:hidden}
+  .app{display:grid;grid-template-rows:48px 1fr 28px;grid-template-columns:208px 1fr;height:100vh;width:100vw}
+
+  /* HEADER */
+  header{grid-column:1/3;grid-row:1;background:#0f172a;color:#f1f5f9;display:flex;align-items:center;padding:0 16px;gap:12px;border-bottom:1px solid #1e293b}
+  .logo{font-weight:700;font-size:14px;color:#fff;display:flex;align-items:center;gap:8px}
+  .logo .dot{width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#3b82f6,#a855f7)}
+  .nav-search{flex:1;max-width:520px;margin-left:24px}
+  .nav-search input{width:100%;padding:6px 10px 6px 28px;border-radius:5px;border:1px solid #334155;background:#1e293b;color:#cbd5e1;font-size:12px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'><circle cx='11' cy='11' r='7'/><path d='M21 21l-4.35-4.35'/></svg>");background-repeat:no-repeat;background-position:8px center}
+  .nav-right{display:flex;align-items:center;gap:14px;color:#cbd5e1;font-size:12px}
+  .nav-right .badge{background:#dc2626;color:#fff;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600}
+  .avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#fb7185,#f59e0b);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+
+  /* SIDEBAR */
+  .app > aside{grid-column:1;grid-row:2;background:#fff;border-right:1px solid var(--line);overflow:hidden;padding:14px 8px}
+  .app > aside .section{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px 10px 4px;font-weight:600}
+  .app > aside ul{list-style:none}
+  .app > aside li{padding:7px 10px;border-radius:5px;color:#334155;font-size:12px;display:flex;align-items:center;gap:8px;cursor:default}
+  .app > aside li.active{background:var(--accent-bg);color:var(--accent);font-weight:600}
+  .app > aside li .ico{width:14px;height:14px;flex:0 0 14px;color:#94a3b8}
+  .app > aside li.active .ico{color:var(--accent)}
+  .app > aside li .count{margin-left:auto;background:#f1f5f9;color:#64748b;border-radius:10px;padding:0 6px;font-size:10px;font-weight:600}
+  .app > aside li.active .count{background:#dbeafe;color:#1d4ed8}
+
+  /* MAIN */
+  main{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 296px;overflow:hidden}
+  .work{padding:14px 16px;overflow:hidden;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--line)}
+  .crumb{font-size:11px;color:var(--muted)}
+  .crumb b{color:var(--txt);font-weight:600}
+  .h1{font-size:18px;font-weight:700;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px}
+  .h1 .pill{font-size:10px;padding:1px 6px;border-radius:4px;background:var(--amber-bg);color:var(--amber);font-weight:600;text-transform:uppercase}
+  .filters{display:flex;gap:8px;align-items:center}
+  .filters input,.filters select,.filters button{padding:6px 10px;border:1px solid var(--line);border-radius:5px;background:#fff;font-size:12px;color:var(--txt)}
+  .filters input{flex:1;max-width:240px}
+  .filters .btn{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  .filters .btn-out{background:#fff;color:var(--accent);border-color:#dbeafe}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);font-size:12px}
+  .tabs .t{padding:8px 12px;color:var(--muted);border-bottom:2px solid transparent;cursor:default}
+  .tabs .t.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+  .tabs .t .b{display:inline-block;background:#f1f5f9;color:#64748b;padding:0 6px;border-radius:8px;margin-left:4px;font-size:10px;font-weight:600}
+
+  /* TABLE */
+  .tbl-wrap{flex:1;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  thead th{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);text-align:left;font-weight:600;padding:8px 10px;background:#fafbfd;border-bottom:1px solid var(--line)}
+  tbody td{padding:9px 10px;border-bottom:1px solid var(--line2);vertical-align:middle;white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.ord{font-family:'JetBrains Mono','Menlo',monospace;font-size:11px;color:#334155}
+  td.email{color:#475569;font-size:11px}
+  td.amount{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
+  td.created{color:#64748b;font-size:11px}
+  td.cust{font-weight:500}
+  .pill{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .p-green{background:var(--green-bg);color:var(--green)}
+  .p-amber{background:var(--amber-bg);color:var(--amber)}
+  .p-red{background:var(--red-bg);color:var(--red)}
+  .p-slate{background:var(--slate-bg);color:var(--slate)}
+  .p-purple{background:var(--purple-bg);color:var(--purple)}
+  .actions{display:flex;gap:4px}
+  .iconbtn{width:24px;height:22px;border-radius:4px;border:1px solid var(--line);background:#fff;color:#64748b;font-size:11px;display:inline-flex;align-items:center;justify-content:center;font-family:monospace;cursor:default}
+  .checkrow{display:inline-block;width:13px;height:13px;border:1.5px solid #cbd5e1;border-radius:3px;vertical-align:middle}
+  .pager{display:flex;justify-content:space-between;align-items:center;padding:8px 4px;font-size:11px;color:var(--muted)}
+  .pager .nums{display:flex;gap:2px}
+  .pager .nums span{padding:2px 7px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#475569}
+  .pager .nums span.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+  /* RIGHT PANEL */
+  .side{padding:14px 14px;overflow:hidden;background:#fafbfd}
+  .side h3{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:8px;font-weight:600}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin-bottom:8px}
+  .stat .v{font-size:18px;font-weight:700;letter-spacing:-0.01em}
+  .stat .k{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  .stat .delta{font-size:10px;color:var(--green);margin-top:2px}
+  .stat .delta.dn{color:var(--red)}
+  .activity{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:11px}
+  .activity .row{padding:5px 0;border-bottom:1px solid var(--line2);color:#475569}
+  .activity .row:last-child{border-bottom:none}
+  .activity .who{font-weight:600;color:#1e293b}
+  .activity .when{font-size:10px;color:var(--muted);margin-top:1px}
+
+  /* FOOTER STATUS BAR — small monospace, IDs only (no text contents). */
+  footer{grid-column:1/3;grid-row:3;background:#1e293b;color:#94a3b8;font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;padding:0 14px;display:flex;align-items:center;gap:14px;border-top:1px solid #0f172a;letter-spacing:.01em}
+  footer .seg{color:#94a3b8}
+  footer .seg b{color:#cbd5e1;font-weight:500}
+  footer .seg.path{color:#a3e635}
+  footer .right{margin-left:auto;color:#64748b}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header data-id="app-header">
+  <div class="logo" data-id="brand-logo"><span class="dot"></span> Acme&nbsp;Ops</div>
+  <div class="nav-search" data-id="header-search"><input value="" placeholder="Search orders, customers, refund IDs…" data-id="hdr-search-input"/></div>
+  <div class="nav-right">
+    <span data-id="hdr-help">Help</span>
+    <span data-id="hdr-changelog">Changelog</span>
+    <span data-id="hdr-notifs">Alerts <span class="badge" data-id="hdr-notif-badge">3</span></span>
+    <span class="avatar" data-id="hdr-avatar">JK</span>
+  </div>
+</header>
+
+<aside data-id="left-nav">
+  <div class="section">Workspace</div>
+  <ul>
+    <li data-id="nav-overview"><span class="ico">▦</span> Overview</li>
+    <li data-id="nav-orders"><span class="ico">▣</span> Orders <span class="count">412</span></li>
+    <li data-id="nav-refunds" class="active"><span class="ico">↩</span> Refund Audit <span class="count">12</span></li>
+    <li data-id="nav-customers"><span class="ico">◉</span> Customers</li>
+    <li data-id="nav-disputes"><span class="ico">⚑</span> Disputes <span class="count">7</span></li>
+  </ul>
+  <div class="section">Insights</div>
+  <ul>
+    <li data-id="nav-reports"><span class="ico">▤</span> Reports</li>
+    <li data-id="nav-payouts"><span class="ico">$</span> Payouts</li>
+    <li data-id="nav-fraud"><span class="ico">!</span> Fraud Signals</li>
+  </ul>
+  <div class="section">Admin</div>
+  <ul>
+    <li data-id="nav-team"><span class="ico">▥</span> Team</li>
+    <li data-id="nav-settings"><span class="ico">⚙</span> Settings</li>
+    <li data-id="nav-audit-log"><span class="ico">≡</span> Audit Log</li>
+  </ul>
+</aside>
+
+<main>
+<section class="work">
+  <div class="crumb"><span>Refund Operations</span> &nbsp;/&nbsp; <b data-id="page-crumb-leaf">Audit Queue</b></div>
+  <div class="h1" data-id="page-h1">Refund Audit Queue <span class="pill">Q3 sweep</span></div>
+
+  <div class="filters" data-id="filter-bar">
+    <input value="" placeholder="Filter by order, customer, email…" data-id="filt-search"/>
+    <select data-id="filt-status"><option>All statuses</option></select>
+    <select data-id="filt-region"><option>All regions</option></select>
+    <select data-id="filt-range"><option>Last 30 days</option></select>
+    <button class="btn-out" data-id="btn-reset">Reset</button>
+    <button class="btn" data-id="btn-apply">Apply filters</button>
+  </div>
+
+  <div class="tabs" data-id="tabs">
+    <span class="t on" data-id="tab-pending">Pending <span class="b">12</span></span>
+    <span class="t" data-id="tab-review">In Review <span class="b">5</span></span>
+    <span class="t" data-id="tab-resolved">Resolved <span class="b">89</span></span>
+    <span class="t" data-id="tab-all">All</span>
+  </div>
+
+  <div class="tbl-wrap" data-id="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th data-id="th-check"><span class="checkrow"></span></th>
+        <th data-id="th-ord">Order ID</th>
+        <th data-id="th-cust">Customer</th>
+        <th data-id="th-email">Email</th>
+        <th data-id="th-amt">Amount</th>
+        <th data-id="th-status">Status</th>
+        <th data-id="th-created">Created</th>
+        <th data-id="th-actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-id="tbl-r1">
+        <td><span class="checkrow" data-id="r1-check"></span></td>
+        <td class="ord" data-id="r1-ord">ORD-2O26-A1F09C-R1</td>
+        <td class="cust" data-id="r1-cust">Henderson Greaves</td>
+        <td class="email" data-id="r1-email">h.greaves@acmesupplyco.io</td>
+        <td class="amount" data-id="r1-amt">$1,047.20</td>
+        <td><span class="pill p-amber" data-id="r1-status">Pending</span></td>
+        <td class="created" data-id="r1-created">Apr 09, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r1-act-view">⌕</span><span class="iconbtn" data-id="r1-act-edit">✎</span><span class="iconbtn" data-id="r1-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r2">
+        <td><span class="checkrow" data-id="r2-check"></span></td>
+        <td class="ord" data-id="r2-ord">ORD-2O26-A2D17B-R0</td>
+        <td class="cust" data-id="r2-cust">Cassidy Tran</td>
+        <td class="email" data-id="r2-email">cas.tran@northwind-mailbox.example</td>
+        <td class="amount" data-id="r2-amt">$248.99</td>
+        <td><span class="pill p-green" data-id="r2-status">Approved</span></td>
+        <td class="created" data-id="r2-created">Apr 11, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r2-act-view">⌕</span><span class="iconbtn" data-id="r2-act-edit">✎</span><span class="iconbtn" data-id="r2-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r3">
+        <td><span class="checkrow" data-id="r3-check"></span></td>
+        <td class="ord" data-id="r3-ord">ORD-2O26-A3B71F-R1</td>
+        <td class="cust" data-id="r3-cust">Whitfield Ortega</td>
+        <td class="email" data-id="r3-email">w.ortega+ops@example.org</td>
+        <td class="amount" data-id="r3-amt">$3,892.04</td>
+        <td><span class="pill p-red" data-id="r3-status">Disputed</span></td>
+        <td class="created" data-id="r3-created">Apr 12, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r3-act-view">⌕</span><span class="iconbtn" data-id="r3-act-edit">✎</span><span class="iconbtn" data-id="r3-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r4">
+        <td><span class="checkrow" data-id="r4-check"></span></td>
+        <td class="ord" data-id="r4-ord">ORD-2O26-O8I1IL-R0</td>
+        <td class="cust" data-id="r4-cust">Mariana O'Sullivan</td>
+        <td class="email" data-id="r4-email">m.osullivan@boreal-foods.example</td>
+        <td class="amount" data-id="r4-amt">$1,247.00</td>
+        <td><span class="pill p-purple" data-id="r4-status">Escalated</span></td>
+        <td class="created" data-id="r4-created">Apr 14, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r4-act-view">⌕</span><span class="iconbtn" data-id="r4-act-edit">✎</span><span class="iconbtn" data-id="r4-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r5">
+        <td><span class="checkrow" data-id="r5-check"></span></td>
+        <td class="ord" data-id="r5-ord">ORD-2O26-C0F92A-R0</td>
+        <td class="cust" data-id="r5-cust">Aleksei Pavlovich</td>
+        <td class="email" data-id="r5-email">a.pavlovich@reseller-grp.example</td>
+        <td class="amount" data-id="r5-amt">$78.50</td>
+        <td><span class="pill p-amber" data-id="r5-status">Pending</span></td>
+        <td class="created" data-id="r5-created">Apr 14, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r5-act-view">⌕</span><span class="iconbtn" data-id="r5-act-edit">✎</span><span class="iconbtn" data-id="r5-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r6">
+        <td><span class="checkrow" data-id="r6-check"></span></td>
+        <td class="ord" data-id="r6-ord">ORD-2O26-D4A21E-R1</td>
+        <td class="cust" data-id="r6-cust">Priyanka Ravindran</td>
+        <td class="email" data-id="r6-email">p.ravindran@deltaventures.example</td>
+        <td class="amount" data-id="r6-amt">$5,499.00</td>
+        <td><span class="pill p-slate" data-id="r6-status">In Review</span></td>
+        <td class="created" data-id="r6-created">Apr 16, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r6-act-view">⌕</span><span class="iconbtn" data-id="r6-act-edit">✎</span><span class="iconbtn" data-id="r6-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r7">
+        <td><span class="checkrow" data-id="r7-check"></span></td>
+        <td class="ord" data-id="r7-ord">ORD-2O26-E5B83C-R0</td>
+        <td class="cust" data-id="r7-cust">Beatriz da Cunha</td>
+        <td class="email" data-id="r7-email">b.dacunha@example.com.br</td>
+        <td class="amount" data-id="r7-amt">$612.00</td>
+        <td><span class="pill p-green" data-id="r7-status">Approved</span></td>
+        <td class="created" data-id="r7-created">Apr 17, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r7-act-view">⌕</span><span class="iconbtn" data-id="r7-act-edit">✎</span><span class="iconbtn" data-id="r7-act-flag">⚑</span></span></td>
+      </tr>
+      <tr data-id="tbl-r8">
+        <td><span class="checkrow" data-id="r8-check"></span></td>
+        <td class="ord" data-id="r8-ord">ORD-2O26-F1C44A-R3</td>
+        <td class="cust" data-id="r8-cust">Robin Quinones</td>
+        <td class="email" data-id="r8-email">r.quinones@studiotenfold.example</td>
+        <td class="amount" data-id="r8-amt">$219.00</td>
+        <td><span class="pill p-purple" data-id="r8-status">Escalated</span></td>
+        <td class="created" data-id="r8-created">Apr 18, 2026</td>
+        <td><span class="actions"><span class="iconbtn" data-id="r8-act-view">⌕</span><span class="iconbtn" data-id="r8-act-edit">✎</span><span class="iconbtn" data-id="r8-act-flag">⚑</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="pager" data-id="pager">
+    <div data-id="pager-info">Showing 1–8 of 12</div>
+    <div class="nums" data-id="pager-nums">
+      <span data-id="page-prev">‹</span>
+      <span class="on" data-id="page-1">1</span>
+      <span data-id="page-2">2</span>
+      <span data-id="page-next">›</span>
+    </div>
+  </div>
+</section>
+
+<aside class="side" data-id="right-panel">
+  <h3>Queue health</h3>
+  <div class="stat" data-id="stat-queued"><div class="k">Total queued</div><div class="v">12</div><div class="delta dn">▾ 3 since yesterday</div></div>
+  <div class="stat" data-id="stat-avg"><div class="k">Avg refund</div><div class="v">$1,723.40</div><div class="delta">▴ 4.1%</div></div>
+  <div class="stat" data-id="stat-disputes"><div class="k">Open disputes</div><div class="v">7</div><div class="delta dn">▾ 2</div></div>
+
+  <h3 style="margin-top:14px">Recent activity</h3>
+  <div class="activity" data-id="activity">
+    <div class="row" data-id="act-1"><span class="who">jchen</span> approved 4 refunds<div class="when">2 min ago</div></div>
+    <div class="row" data-id="act-2"><span class="who">aleo</span> escalated dispute #A3B71F<div class="when">12 min ago</div></div>
+    <div class="row" data-id="act-3"><span class="who">system</span> nightly reconciliation finished<div class="when">3h ago</div></div>
+  </div>
+</aside>
+</main>
+
+<footer data-id="footer-status">
+  <span class="seg path">[ inspector ]</span>
+  <span class="seg" data-id="footer-hover-line">hovered: <b data-id="footer-id">none</b></span>
+  <span class="right" data-id="footer-meta">build 2026.04.18-r3 · session #f81d · cwd ~/ops/refunds</span>
+</footer>
+
+</div>
+</body>
+</html>

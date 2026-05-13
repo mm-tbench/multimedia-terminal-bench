@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Acme Internal — Sprint Board</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --col:#eef2f7; --card:#ffffff; --line:#dde2eb; --line2:#e8ecf3;
+    --txt:#1f2530; --muted:#6b7280; --accent:#2563eb;
+    --green:#15803d; --green-bg:#dcfce7;
+    --amber:#a16207; --amber-bg:#fef3c7;
+    --red:#b91c1c; --red-bg:#fee2e2;
+    --slate:#475569; --slate-bg:#e2e8f0;
+    --blue:#1d4ed8; --blue-bg:#dbeafe;
+    --purple:#6d28d9; --purple-bg:#ede9fe;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:13px;line-height:1.4;overflow:hidden}
+  .app{display:grid;grid-template-rows:52px 1fr 28px;height:100vh;width:100vw}
+
+  header{background:#0f172a;color:#f1f5f9;display:flex;align-items:center;padding:0 18px;gap:14px;border-bottom:1px solid #1e293b}
+  .logo{font-weight:700;font-size:14px;color:#fff;display:flex;align-items:center;gap:8px}
+  .logo .dot{width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#3b82f6,#a855f7)}
+  .crumb{color:#cbd5e1;font-size:11px;margin-left:14px}
+  .crumb b{color:#fff;font-weight:600}
+  .cap{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:#1e293b;color:#e2e8f0;padding:5px 12px;border-radius:6px;font-size:11px;border:1px solid #334155}
+  .cap .lbl{color:#94a3b8;font-weight:500}
+  .cap .num{font-family:'JetBrains Mono','Menlo',monospace;font-size:13px;font-weight:700;color:#a3e635;letter-spacing:.02em}
+  .nav-right{display:flex;align-items:center;gap:14px;color:#cbd5e1;font-size:12px;margin-left:14px}
+  .avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#fb7185,#f59e0b);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+
+  main{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:12px;overflow:hidden}
+  .col{background:var(--col);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+  .col h2{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:10px 12px 6px;display:flex;align-items:center;gap:6px}
+  .col h2 .count{margin-left:auto;background:var(--card);color:#475569;border-radius:10px;padding:0 7px;font-size:10px;font-weight:600;border:1px solid var(--line)}
+  .col-body{display:flex;flex-direction:column;gap:7px;padding:6px 8px 10px;overflow:hidden}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 9px;cursor:default;transition:box-shadow .15s;position:relative}
+  .card .topr{position:absolute;top:6px;right:8px;display:flex;gap:4px;align-items:center}
+  .effort{background:#1e293b;color:#fde68a;font-family:'JetBrains Mono','Menlo',monospace;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;letter-spacing:.04em}
+  .age{font-size:9px;color:var(--muted);font-family:'JetBrains Mono','Menlo',monospace}
+  .card .ttl{font-weight:600;font-size:12px;color:#1f2530;line-height:1.3;margin-bottom:5px;padding-right:60px}
+  .card .meta{display:flex;align-items:center;justify-content:space-between;gap:6px}
+  .card .id{font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;color:var(--muted);letter-spacing:.02em}
+  .card .ass{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#334155}
+  .card .ass .av{width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#22d3ee);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+  .tags{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:5px}
+  .tag{font-size:9px;padding:1px 5px;border-radius:8px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;border:1px solid transparent}
+  .t-green{background:var(--green-bg);color:var(--green);border-color:#bbf7d0}
+  .t-amber{background:var(--amber-bg);color:var(--amber);border-color:#fde68a}
+  .t-red{background:var(--red-bg);color:var(--red);border-color:#fecaca}
+  .t-slate{background:var(--slate-bg);color:var(--slate);border-color:#cbd5e1}
+  .t-blue{background:var(--blue-bg);color:var(--blue);border-color:#bfdbfe}
+  .t-purple{background:var(--purple-bg);color:var(--purple);border-color:#ddd6fe}
+
+  footer{background:#1e293b;color:#94a3b8;font-family:'JetBrains Mono','Menlo',monospace;font-size:10px;padding:0 14px;display:flex;align-items:center;gap:14px;border-top:1px solid #0f172a;letter-spacing:.01em}
+  footer .seg b{color:#cbd5e1;font-weight:500}
+  footer .seg.path{color:#a3e635}
+  footer .right{margin-left:auto;color:#64748b}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header data-id="app-header">
+  <div class="logo" data-id="brand-logo"><span class="dot"></span> Acme&nbsp;Sprint</div>
+  <div class="crumb">Workspace &nbsp;/&nbsp; Sprints &nbsp;/&nbsp; <b>Q3-S2 Sprint Board</b></div>
+  <div class="cap" data-id="capacity-widget">
+    <span class="lbl">Sprint capacity remaining</span>
+    <span class="num" data-id="capacity-pts">24 pts</span>
+  </div>
+  <div class="nav-right">
+    <span data-id="hdr-help">Help</span>
+    <span class="avatar" data-id="hdr-avatar">JK</span>
+  </div>
+</header>
+
+<main data-id="board">
+
+  <section class="col" data-id="col-backlog">
+    <h2>Backlog <span class="count">4</span></h2>
+    <div class="col-body">
+      <div class="card" data-id="card-102">
+        <div class="topr"><span class="effort">13&nbsp;pts</span><span class="age">6d</span></div>
+        <div class="ttl">Migration scripts v3</div>
+        <div class="tags"><span class="tag t-amber">P1</span><span class="tag t-slate">backend</span></div>
+        <div class="meta"><span class="id">id: card-102</span><span class="ass"><span class="av">RJ</span> R. Juarez</span></div>
+      </div>
+      <div class="card" data-id="card-101">
+        <div class="topr"><span class="effort">8&nbsp;pts</span><span class="age">4d</span></div>
+        <div class="ttl">Auth refactor v2</div>
+        <div class="tags"><span class="tag t-green">frontend</span><span class="tag t-slate">tech-debt</span></div>
+        <div class="meta"><span class="id">id: card-101</span><span class="ass"><span class="av">DT</span> D. Tran</span></div>
+      </div>
+      <div class="card" data-id="card-103">
+        <div class="topr"><span class="effort">5&nbsp;pts</span><span class="age">2d</span></div>
+        <div class="ttl">User onboarding tour</div>
+        <div class="tags"><span class="tag t-amber">design</span></div>
+        <div class="meta"><span class="id">id: card-103</span><span class="ass"><span class="av">MO</span> M. Okafor</span></div>
+      </div>
+      <div class="card" data-id="card-104">
+        <div class="topr"><span class="effort">3&nbsp;pts</span><span class="age">1d</span></div>
+        <div class="ttl">Localization bundles</div>
+        <div class="tags"><span class="tag t-green">i18n</span></div>
+        <div class="meta"><span class="id">id: card-104</span><span class="ass"><span class="av">SK</span> S. Khan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" data-id="col-progress">
+    <h2>In Progress <span class="count">4</span></h2>
+    <div class="col-body">
+      <div class="card" data-id="card-201">
+        <div class="topr"><span class="effort">5&nbsp;pts</span><span class="age">3d</span></div>
+        <div class="ttl">Search widget</div>
+        <div class="tags"><span class="tag t-blue">M-priority</span></div>
+        <div class="meta"><span class="id">id: card-201</span><span class="ass"><span class="av">DT</span> D. Tran</span></div>
+      </div>
+      <div class="card" data-id="card-203">
+        <div class="topr"><span class="effort">21&nbsp;pts</span><span class="age">9d</span></div>
+        <div class="ttl">Priority-bump dashboard</div>
+        <div class="tags"><span class="tag t-red">P0</span><span class="tag t-purple">legal-review</span></div>
+        <div class="meta"><span class="id">id: card-203</span><span class="ass"><span class="av">RJ</span> R. Juarez</span></div>
+      </div>
+      <div class="card" data-id="card-202">
+        <div class="topr"><span class="effort">20&nbsp;pts</span><span class="age">5d</span></div>
+        <div class="ttl">API rewrite v4</div>
+        <div class="tags"><span class="tag t-amber">P1</span><span class="tag t-slate">backend</span></div>
+        <div class="meta"><span class="id">id: card-202</span><span class="ass"><span class="av">SK</span> S. Khan</span></div>
+      </div>
+      <div class="card" data-id="card-204">
+        <div class="topr"><span class="effort">3&nbsp;pts</span><span class="age">4d</span></div>
+        <div class="ttl">Webhooks v2</div>
+        <div class="tags"><span class="tag t-green">shipped-staging</span></div>
+        <div class="meta"><span class="id">id: card-204</span><span class="ass"><span class="av">MO</span> M. Okafor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" data-id="col-review">
+    <h2>In Review <span class="count">3</span></h2>
+    <div class="col-body">
+      <div class="card" data-id="card-301">
+        <div class="topr"><span class="effort">5&nbsp;pts</span><span class="age">2d</span></div>
+        <div class="ttl">Billing flow</div>
+        <div class="tags"><span class="tag t-green">QA approved</span></div>
+        <div class="meta"><span class="id">id: card-301</span><span class="ass"><span class="av">RJ</span> R. Juarez</span></div>
+      </div>
+      <div class="card" data-id="card-302">
+        <div class="topr"><span class="effort">8&nbsp;pts</span><span class="age">9d</span></div>
+        <div class="ttl">Settings page</div>
+        <div class="tags"><span class="tag t-amber">designer review</span></div>
+        <div class="meta"><span class="id">id: card-302</span><span class="ass"><span class="av">DT</span> D. Tran</span></div>
+      </div>
+      <div class="card" data-id="card-303">
+        <div class="topr"><span class="effort">3&nbsp;pts</span><span class="age">8d</span></div>
+        <div class="ttl">Email templates</div>
+        <div class="tags"><span class="tag t-green">QA approved</span></div>
+        <div class="meta"><span class="id">id: card-303</span><span class="ass"><span class="av">SK</span> S. Khan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" data-id="col-blocked">
+    <h2>Blocked <span class="count">2</span></h2>
+    <div class="col-body">
+      <div class="card" data-id="card-401">
+        <div class="topr"><span class="effort">5&nbsp;pts</span><span class="age">7d</span></div>
+        <div class="ttl">Checkout polish</div>
+        <div class="tags"><span class="tag t-red">blocked-by-api</span></div>
+        <div class="meta"><span class="id">id: card-401</span><span class="ass"><span class="av">MO</span> M. Okafor</span></div>
+      </div>
+      <div class="card" data-id="card-402">
+        <div class="topr"><span class="effort">8&nbsp;pts</span><span class="age">12d</span></div>
+        <div class="ttl">Auth refactor (legacy)</div>
+        <div class="tags"><span class="tag t-red">blocked-by-design</span><span class="tag t-slate">deprecated</span></div>
+        <div class="meta"><span class="id">id: card-402</span><span class="ass"><span class="av">DT</span> D. Tran</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" data-id="col-done">
+    <h2>Done <span class="count">2</span></h2>
+    <div class="col-body">
+      <div class="card" data-id="card-501">
+        <div class="topr"><span class="effort">13&nbsp;pts</span><span class="age">0d</span></div>
+        <div class="ttl">Dashboard refactor v1</div>
+        <div class="tags"><span class="tag t-green">shipped</span></div>
+        <div class="meta"><span class="id">id: card-501</span><span class="ass"><span class="av">RJ</span> R. Juarez</span></div>
+      </div>
+      <div class="card" data-id="card-502">
+        <div class="topr"><span class="effort">5&nbsp;pts</span><span class="age">0d</span></div>
+        <div class="ttl">Notifications v2</div>
+        <div class="tags"><span class="tag t-green">shipped</span></div>
+        <div class="meta"><span class="id">id: card-502</span><span class="ass"><span class="av">SK</span> S. Khan</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer data-id="footer-status">
+  <span class="seg path">[ inspector ]</span>
+  <span class="seg" data-id="footer-hover-line">hovered: <b data-id="footer-id">none</b></span>
+  <span class="right" data-id="footer-meta">sprint Q3-S2 · build 2026.04.18-r3 · session #f81d</span>
+</footer>
+
+</div>
+</body>
+</html>

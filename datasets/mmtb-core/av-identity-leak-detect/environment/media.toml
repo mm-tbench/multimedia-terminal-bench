@@ -1,0 +1,28 @@
+schema_version = "1.0"
+
+# 160-second compliance-test clip composed of 8 × 20s slides rendered in
+# PIL (presentation deck style). Four slides carry a cross-channel identity
+# leak (visible department badge + Kokoro-TTS-spoken first name or
+# role/title within a tight 5-7s sub-window). Four decoy slides share
+# surface cues with leaks but don't actually constitute a same-window
+# cross-channel leak: title slide (publicly identified presenter), org
+# chart (4 codes + anonymized narration), distractor with badge but
+# audio about other people, and a chart slide with audio-only names.
+#
+# v4 vs v3:
+#   - 8 slides (was 5); 4 leaks (was 2). Agent must enumerate all four.
+#   - Tight audio-cue sub-window gold (5-7s, not the whole 20s slide) —
+#     agents that default to slide-level windows fail the IoU=0.5 gate.
+#   - Verifier switched to F1 reward (precision + recall) so over-flagging
+#     decoy slides as leaks actively penalizes the agent.
+#   - One leak (slide 7) uses a SMALL corner badge instead of the big
+#     centered one — tests visual perception under reduced salience.
+
+[[media]]
+output = "clip.mp4"
+sha256 = "ba5030cbe6f25b7a91f519838ce7bfd875f450e7425ffffefea61107263f4e80"
+
+[media.source]
+type = "synthetic"
+description = "PIL-rendered 8-slide presentation deck (1280x720, 30fps, 160s) with 4 cross-channel leaks at tight audio-cue sub-windows + 4 decoy slides (title, org chart, badge-but-audio-about-others distractor, audio-only chart); Gaussian-blurred portrait placeholders; one leak uses small-corner-badge layout for reduced visual salience; Kokoro-82M (am_michael) narration"
+license = "Apache-2.0"

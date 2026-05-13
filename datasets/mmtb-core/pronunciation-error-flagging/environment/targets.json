@@ -1,0 +1,28 @@
+{
+  "target_word_occurrences": [
+    {"word": "think",  "occurrence_index": 1, "acceptable_pronunciations": ["θɪŋk"]},
+    {"word": "three",  "occurrence_index": 1, "acceptable_pronunciations": ["θri", "θriː"]},
+    {"word": "very",   "occurrence_index": 1, "acceptable_pronunciations": ["ˈvɛri", "ˈveri"]},
+    {"word": "rice",   "occurrence_index": 1, "acceptable_pronunciations": ["raɪs"]},
+    {"word": "river",  "occurrence_index": 1, "acceptable_pronunciations": ["ˈrɪvɚ", "ˈrɪvə"]},
+    {"word": "long",   "occurrence_index": 1, "acceptable_pronunciations": ["lɔŋ", "lɒŋ"]},
+    {"word": "road",   "occurrence_index": 1, "acceptable_pronunciations": ["roʊd", "rəʊd"]},
+    {"word": "this",   "occurrence_index": 1, "acceptable_pronunciations": ["ðɪs"]},
+    {"word": "truth",  "occurrence_index": 1, "acceptable_pronunciations": ["truθ", "truːθ"]},
+    {"word": "right",  "occurrence_index": 1, "acceptable_pronunciations": ["raɪt"]},
+    {"word": "love",   "occurrence_index": 1, "acceptable_pronunciations": ["lʌv"]},
+    {"word": "this",   "occurrence_index": 2, "acceptable_pronunciations": ["ðɪs"]}
+  ],
+  "error_label_inventory": [
+    "TH->S", "TH->T", "TH->F",
+    "TH->D", "TH->Z",
+    "V->B", "B->V",
+    "R->L", "L->R",
+    "final_consonant_deletion",
+    "schwa_deletion",
+    "stress_wrong",
+    "IH->IY", "IY->IH",
+    "vowel_substitution",
+    "other"
+  ]
+}

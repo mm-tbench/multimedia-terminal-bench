@@ -1,0 +1,862 @@
+{
+  "utterances": [
+    {
+      "utterance_id": "U1",
+      "audio_file": "U1.wav",
+      "transcript": "THE SAME LOOK OF CONFUSION IS ON HIS FACE.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "THE",
+          "canonical_phones": [
+            "DH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "SAME",
+          "canonical_phones": [
+            "S",
+            "EY0",
+            "M"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "LOOK",
+          "canonical_phones": [
+            "L",
+            "UH0",
+            "K"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "OF",
+          "canonical_phones": [
+            "AH0",
+            "V"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "CONFUSION",
+          "canonical_phones": [
+            "K",
+            "AH0",
+            "N",
+            "F",
+            "Y",
+            "UW1",
+            "ZH",
+            "N"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "IS",
+          "canonical_phones": [
+            "IH0",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "ON",
+          "canonical_phones": [
+            "AH0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "HIS",
+          "canonical_phones": [
+            "HH",
+            "IH0",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "FACE",
+          "canonical_phones": [
+            "F",
+            "EY0",
+            "S"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U2",
+      "audio_file": "U2.wav",
+      "transcript": "THEY WERE ALREADY IN, AND SEEMED LIKE THEY SAW NOTHING.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "THEY",
+          "canonical_phones": [
+            "DH",
+            "EY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "WERE",
+          "canonical_phones": [
+            "W",
+            "ER0"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "ALREADY",
+          "canonical_phones": [
+            "AO0",
+            "L",
+            "R",
+            "EH1",
+            "D",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "IN",
+          "canonical_phones": [
+            "IH0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "AND",
+          "canonical_phones": [
+            "AE0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "SEEMED",
+          "canonical_phones": [
+            "S",
+            "IY0",
+            "M",
+            "D"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "LIKE",
+          "canonical_phones": [
+            "L",
+            "AY0",
+            "K"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "THEY",
+          "canonical_phones": [
+            "DH",
+            "EY0"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "SAW",
+          "canonical_phones": [
+            "S",
+            "AO0"
+          ]
+        },
+        {
+          "word_index": 9,
+          "word": "NOTHING",
+          "canonical_phones": [
+            "N",
+            "AH1",
+            "TH",
+            "IH0",
+            "NG"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U3",
+      "audio_file": "U3.wav",
+      "transcript": "I SUPPOSE IT IS BETTER THAT YOU SHOULD TELL ME.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "I",
+          "canonical_phones": [
+            "AY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "SUPPOSE",
+          "canonical_phones": [
+            "S",
+            "AH0",
+            "P",
+            "OW1",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "IT",
+          "canonical_phones": [
+            "IH0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "IS",
+          "canonical_phones": [
+            "IH0",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "BETTER",
+          "canonical_phones": [
+            "B",
+            "EH1",
+            "T",
+            "ER0"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "THAT",
+          "canonical_phones": [
+            "DH",
+            "AE0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "YOU",
+          "canonical_phones": [
+            "Y",
+            "UW0"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "SHOULD",
+          "canonical_phones": [
+            "SH",
+            "UH0",
+            "D"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "TELL",
+          "canonical_phones": [
+            "T",
+            "EH0",
+            "L"
+          ]
+        },
+        {
+          "word_index": 9,
+          "word": "ME",
+          "canonical_phones": [
+            "M",
+            "IY0"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U4",
+      "audio_file": "U4.wav",
+      "transcript": "YOU HAVE TO CHANGE WITH THEM OR BE LEFT BEHIND.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "YOU",
+          "canonical_phones": [
+            "Y",
+            "UW0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "HAVE",
+          "canonical_phones": [
+            "HH",
+            "AE0",
+            "V"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "TO",
+          "canonical_phones": [
+            "T",
+            "UW0"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "CHANGE",
+          "canonical_phones": [
+            "CH",
+            "EY0",
+            "N",
+            "JH"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "WITH",
+          "canonical_phones": [
+            "W",
+            "IH0",
+            "TH"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "THEM",
+          "canonical_phones": [
+            "DH",
+            "EH0",
+            "M"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "OR",
+          "canonical_phones": [
+            "AO0"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "BE",
+          "canonical_phones": [
+            "B",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "LEFT",
+          "canonical_phones": [
+            "L",
+            "EH0",
+            "F",
+            "T"
+          ]
+        },
+        {
+          "word_index": 9,
+          "word": "BEHIND",
+          "canonical_phones": [
+            "B",
+            "IH0",
+            "HH",
+            "AY1",
+            "N",
+            "D"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U5",
+      "audio_file": "U5.wav",
+      "transcript": "WE TALKED ALL NIGHT, AGAIN, ABOUT THIS AND THAT.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "WE",
+          "canonical_phones": [
+            "W",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "TALKED",
+          "canonical_phones": [
+            "T",
+            "AO0",
+            "K",
+            "T"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "ALL",
+          "canonical_phones": [
+            "AO0",
+            "L"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "NIGHT",
+          "canonical_phones": [
+            "N",
+            "AY0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "AGAIN",
+          "canonical_phones": [
+            "AH0",
+            "G",
+            "EH0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "ABOUT",
+          "canonical_phones": [
+            "AH0",
+            "B",
+            "AW1",
+            "T"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "THIS",
+          "canonical_phones": [
+            "DH",
+            "IH0",
+            "S"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "AND",
+          "canonical_phones": [
+            "AE0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "THAT",
+          "canonical_phones": [
+            "DH",
+            "AE0",
+            "T"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U6",
+      "audio_file": "U6.wav",
+      "transcript": "THE OTHER PEOPLE IN THE RESTAURANT WERE LOOKING AT US.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "THE",
+          "canonical_phones": [
+            "DH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "OTHER",
+          "canonical_phones": [
+            "AH1",
+            "DH",
+            "ER0"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "PEOPLE",
+          "canonical_phones": [
+            "P",
+            "IY1",
+            "P",
+            "L"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "IN",
+          "canonical_phones": [
+            "IH0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "THE",
+          "canonical_phones": [
+            "DH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "RESTAURANT",
+          "canonical_phones": [
+            "R",
+            "EH1",
+            "S",
+            "T",
+            "R",
+            "AA0",
+            "N",
+            "T"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "WERE",
+          "canonical_phones": [
+            "W",
+            "ER0"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "LOOKING",
+          "canonical_phones": [
+            "L",
+            "UH1",
+            "K",
+            "IH0",
+            "NG"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "AT",
+          "canonical_phones": [
+            "AE0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 9,
+          "word": "US",
+          "canonical_phones": [
+            "AH0",
+            "S"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U7",
+      "audio_file": "U7.wav",
+      "transcript": "YOU MUST NOT THINK OF THE PAST NOW.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "YOU",
+          "canonical_phones": [
+            "Y",
+            "UW0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "MUST",
+          "canonical_phones": [
+            "M",
+            "AH0",
+            "S",
+            "T"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "NOT",
+          "canonical_phones": [
+            "N",
+            "AH0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "THINK",
+          "canonical_phones": [
+            "TH",
+            "IH0",
+            "NG",
+            "K"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "OF",
+          "canonical_phones": [
+            "AH0",
+            "V"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "THE",
+          "canonical_phones": [
+            "DH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "PAST",
+          "canonical_phones": [
+            "P",
+            "AA0",
+            "S",
+            "T"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "NOW",
+          "canonical_phones": [
+            "N",
+            "AW0"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U8",
+      "audio_file": "U8.wav",
+      "transcript": "SHE HAVE TO MAKE UP THINGS IF EVER.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "SHE",
+          "canonical_phones": [
+            "SH",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "HAVE",
+          "canonical_phones": [
+            "HH",
+            "AE0",
+            "V"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "TO",
+          "canonical_phones": [
+            "T",
+            "UW0"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "MAKE",
+          "canonical_phones": [
+            "M",
+            "EY0",
+            "K"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "UP",
+          "canonical_phones": [
+            "AH0",
+            "P"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "THINGS",
+          "canonical_phones": [
+            "TH",
+            "IH0",
+            "NG",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "IF",
+          "canonical_phones": [
+            "IH0",
+            "F"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "EVER",
+          "canonical_phones": [
+            "EH1",
+            "V",
+            "AH0"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U9",
+      "audio_file": "U9.wav",
+      "transcript": "HE REACHED FOR HER HAND, SHE LET HIM TAKE IT.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "HE",
+          "canonical_phones": [
+            "HH",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "REACHED",
+          "canonical_phones": [
+            "R",
+            "IY0",
+            "CH",
+            "T"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "FOR",
+          "canonical_phones": [
+            "F",
+            "AO0",
+            "R"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "HER",
+          "canonical_phones": [
+            "HH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "HAND",
+          "canonical_phones": [
+            "HH",
+            "AE0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "SHE",
+          "canonical_phones": [
+            "SH",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "LET",
+          "canonical_phones": [
+            "L",
+            "EH0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "HIM",
+          "canonical_phones": [
+            "HH",
+            "IH0",
+            "M"
+          ]
+        },
+        {
+          "word_index": 8,
+          "word": "TAKE",
+          "canonical_phones": [
+            "T",
+            "EY0",
+            "K"
+          ]
+        },
+        {
+          "word_index": 9,
+          "word": "IT",
+          "canonical_phones": [
+            "IH0",
+            "T"
+          ]
+        }
+      ]
+    }
+  ],
+  "phone_inventory": [
+    "<DEL>",
+    "<unk>",
+    "AA",
+    "AE",
+    "AH",
+    "AO",
+    "AW",
+    "AY",
+    "B",
+    "CH",
+    "D",
+    "DH",
+    "EH",
+    "ER",
+    "EY",
+    "F",
+    "G",
+    "HH",
+    "IH",
+    "IY",
+    "JH",
+    "K",
+    "L",
+    "M",
+    "N",
+    "NG",
+    "OW",
+    "P",
+    "R",
+    "S",
+    "SH",
+    "T",
+    "TH",
+    "UH",
+    "UW",
+    "V",
+    "W",
+    "Y",
+    "Z",
+    "ZH"
+  ],
+  "task_notes": "Each utterance is a single L2 English speaker reading a sentence. Across all 9 utterances, the speaker has recurring phoneme-confusion patterns (substitutions / deletions that happen 2 or more times). Identify every (canonical_phone, pronounced_phone) confusion pattern that occurs at least 2 times across the 9 utterances."
+}

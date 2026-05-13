@@ -1,0 +1,141 @@
+schema_version = "1.0"
+
+# dialogue-exchange-match — 10 candidate takes of a 4-turn dialogue
+# between two characters A and B. The brief specifies per-turn
+# (speaker, emotion) pairs AND requires emotion stable within each
+# (per-file detail not disclosed in this manifest)
+# arc [NEU, ANG, SAD, DIS], speakers [A, B, A, B], stable per turn.
+#
+# Extends T094 (single-actor monologue with 3 axes) into a 2-speaker
+# dialogue; 4th axis is speaker attribution per turn. Voice-identity
+# discrimination is required turn by turn (not across a single
+# continuous monologue, as in T094).
+#
+# (per-file detail not disclosed in this manifest)
+#   - WITHIN_VAL_Tx (x3): per-turn within-valence emotion near-miss.
+#   - WRONG_SPEAKER_Tx (x2): correct arc, wrong actor at one turn.
+#   - INTRA_MIX_Tx (x2): arc + speakers correct, one turn internally
+#     splices two emotions (first-half + second-half, 100 ms crossfade).
+#   - FULL_ROLE_REV: correct arc + stability, A/B swapped at every turn.
+#   - BAG_WRONG_ORDER: correct speakers, same 4 emotions reshuffled.
+#
+# Source: CREMA-D (Cao et al. 2014, ODbL 1.0) —
+# https://github.com/CheyneyComputerScience/CREMA-D
+# Speaker A = actor 1001 (M 51); Speaker B = actor 1011 (M 32) —
+# same gender, ~20-year age gap for realistic scene-partner pairing.
+# Turn sentences (CREMA-D codes): IEO / TIE / IOM / DFA. Each turn
+# individually loudness-normalized to -18 LUFS, concatenated with
+# 200 ms silence between turns. Intra-turn splices at ~50% of each
+# source recording with a 100 ms crossfade (same actor).
+#
+# (per-file detail not disclosed in this manifest)
+#
+# Build recipe: datasets/sample-media/crema-d/build_t099.py.
+
+[[media]]
+output = "brief.md"
+sha256 = "505991ce4d468d1b081aec6c2b5f1b2d7249e28677175a742617ebeaf7a7a787"
+
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "Director's brief naming the per-turn (speaker, emotion) plan, and the intra-turn stability requirement. Hand-authored."
+
+[[media]]
+output = "script.md"
+sha256 = "59541f93c5f993884898ce113383ac1bc7bcfc81ef00924a1e27552ecc11402d"
+
+[media.source]
+type = "synthetic"
+license = "MIT"
+description = "Four-line dialogue script with per-turn speaker tags (A or B). Sentences from CREMA-D. Hand-authored."
+
+[[media]]
+output = "takes/take_01.wav"
+sha256 = "0c79015cef1d75ea0339be89b59f16be99d7e5df4f4ee3fbdb511ed32ca77768"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_02.wav"
+sha256 = "987628bd0b1bd34d6eecc9d0ccc465d900cc10c086172e36673a8eded15534b2"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_03.wav"
+sha256 = "f17f063a309f54d377f9f7c5a36ce4a1400f559aaa453467d1701b1279a391b6"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_04.wav"
+sha256 = "aece9c4168c4c898ac7a3bcb94affe1bad1258cd58f189052701bfde7b0af2d6"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_05.wav"
+sha256 = "b2909886c0d1cda290041ad257bca973e402685702e136a83a5e2abf2f11d7c8"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_06.wav"
+sha256 = "979c157b325765d86dbb633c25413523d8fd55a6d13d457c1f7c0758ab0825fc"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_07.wav"
+sha256 = "453e5d10b582b0aca7692d526a3c16be161109885191b2cba1d9a9decac4d1a6"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_08.wav"
+sha256 = "07a47fb6a250f3410c6260ced22dddd9656ea95adfb11e65ffa299530307bd07"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_09.wav"
+sha256 = "546823a144a683074b0091396ae8f24c39c50b722bf4b83c88aef3c829c5e48b"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."
+
+[[media]]
+output = "takes/take_10.wav"
+sha256 = "dff14d42c50cc6bed8926f5634fecf1f92d60e47b1d136ddc64c342e508f27c1"
+
+[media.source]
+type = "synthetic"
+license = "ODbL-1.0"
+description = "Four concatenated CREMA-D turns (IEO/TIE/IOM/DFA), each loudness-normalized to -18 LUFS with 200 ms silence between turns. Per-turn (speaker, emotion) + optional intra-turn splice per the task design. Source: CREMA-D (Cao et al. 2014, ODbL 1.0)."

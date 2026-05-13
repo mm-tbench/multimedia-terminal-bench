@@ -1,0 +1,43 @@
+schema_version = "1.0"
+
+# adr-edit-detection — ~60 s narration scene by LibriSpeech reader 121.
+# Most of the scene is concatenated from chapter 121726 (base session);
+# four segments were re-recorded as ADR using different chapters
+# (123852 and 127105) of the same reader — different sessions, same
+# speaker. The ADR splices carry subtle differences in room tone,
+# mic distance, and session ambience that are the only acoustic
+# discontinuities in the scene.
+#
+# Speaker identity is held constant, loudness is normalized to -18 LUFS,
+# and the narration is continuous-book-style throughout, so voice-ID /
+# amplitude / narrative-content shortcuts don't work. Detection requires
+# sub-second acoustic continuity perception.
+#
+# Source: LibriSpeech test-clean (OpenSLR 12) —
+#   audio: Public Domain (LibriVox); metadata: CC-BY-4.0.
+# https://www.openslr.org/12
+#
+# Scene layout (durations post loudnorm, see meta.json for exact values):
+#   base  121726/0000  0.00 - 8.46 s
+#   base  121726/0001  8.46 - 14.38 s
+#   ADR   127105/0001  14.38 - 19.41 s   <- gold interval 1
+#   base  121726/0003  19.41 - 26.16 s
+#   ADR   127105/0006  26.16 - 30.89 s   <- gold interval 2
+#   base  121726/0005  30.89 - 33.99 s
+#   base  121726/0006  33.99 - 37.88 s
+#   ADR   123852/0001  37.88 - 39.76 s   <- gold interval 3
+#   base  121726/0008  39.76 - 44.74 s
+#   base  121726/0009  44.74 - 52.01 s
+#   ADR   127105/0003  52.01 - 59.73 s   <- gold interval 4
+# Total scene duration: 59.73 s.
+#
+# Build recipe: datasets/sample-media/librispeech/build_t102.py.
+
+[[media]]
+output = "scene.wav"
+sha256 = "dc4e33916163f942b189f9744fcc847d7dad519a06f36535b103a85f25413dc4"
+
+[media.source]
+type = "synthetic"
+license = "CC-BY-4.0"
+description = "59.73 s mono 16 kHz WAV scene constructed by concatenating 11 LibriSpeech test-clean segments from reader 121 (base chapter 121726 with 4 ADR splices from chapters 127105 + 123852). Each segment loudness-normalized to -18 LUFS. Source: LibriSpeech test-clean (LibriVox PD audio, CC-BY-4.0 metadata)."

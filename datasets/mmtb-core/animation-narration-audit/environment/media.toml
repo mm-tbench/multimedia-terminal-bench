@@ -1,0 +1,33 @@
+schema_version = "1.0"
+
+# animation-narration-audit (T149) — UI animation/transition state audit on
+# a Helio Studio prototype. Senior designer narrates 8 transient
+# (300-700 ms) animations; 6 correctly described, 2 misdescribed.
+#
+# Mechanism: pipeline-resistant. Animations complete in 300-700 ms; sparse
+# frame sampling (fps=1/10 = 10s gap, fps=2/1 = 0.5s gap) misses in-flight
+# states. Frame OCR captures static text but cannot detect motion direction,
+# color transitions, or transient states. Agent must perceive video
+# temporally with dense sampling — exactly what watch_video provides natively
+# but shell pipelines do poorly.
+#
+# Build: datasets/sample-media/synthetic/t149_animation_demo/build_t149.py
+# UI:    datasets/sample-media/synthetic/t149_animation_demo/html/demo.html
+
+[[media]]
+output = "recording.mp4"
+sha256 = "49f6f7e3e54e4e2998eb460af9dcb21d6bc25c51823293f3d1edc80b77b79f38"
+
+[media.source]
+type = "synthetic"
+license = "Apache-2.0"
+description = "52.6 s 1920x1080 H.264/AAC 30 fps synthetic Helio Studio UI design demo (v2.2 — Playwright continuous video recording for smooth animations + visible cursor with click ring + Frame-row click flow). Polished Figma-style design tool rendered via Playwright Chromium: top brand bar (Helio Studio + Transition Kit + saved indicator + zoom + Play prototype), 240 px Layers panel (Pages + Frames list with 8 generic-named entries 'Frame 01' through 'Frame 08' + duration annotation), 1100x760 px center canvas containing a real-looking Aria Workspace prototype (header + sidebar + main area with Welcome heading + filter buttons + dropdown + hero image + 3 KPI cards + spinner + slide-in modal + fade-in toast), 280 px right Inspector panel (selected frame meta + 8-frame timeline + notes). v2.2 changes from v2: (a) switched from PNG-screenshot-concat capture to Playwright record_video_dir continuous recording — animations now render at native 30 fps with their natural motion smoothness instead of being stitched from 4 discrete in-flight frames; (b) added visible cursor + click ring + Frame-row click flow — cursor moves to the corresponding 'Frame N' entry in the Layers panel (200 ms cubic ease), Frame entry highlights, click ring fires at cursor position, then animation plays in the canvas (matches real Figma/Helio playthrough behaviour). Hardening levers from v2 retained: animation durations 250-450 ms; generic frame names; no now-playing pill; 3 of 8 mismatches; instruction.md outcome-only. Single Kokoro TTS designer voice (af_bella) narrates 8 UI animations: 1 modal slide-in-right (250ms), 2 toast fade-in (300ms), 3 spinner morph (350ms — voice says GREEN but animation morphs RED — MISMATCH), 4 drawer slide-out-left (300ms), 5 badge pulse (450ms × 2), 6 dropdown expand (300ms — voice says UPWARD but expands DOWNWARD — MISMATCH), 7 card scale (300ms — voice says SCALES UP but card SCALES DOWN — MISMATCH), 8 hero image cross-fade (400ms). ffmpeg-lavfi pink-noise office ambient."
+
+[[media]]
+output = "animation_vocab.json"
+sha256 = "2c7378455c4d6e9d1f0afe2d7e961e0a45dcb04df3eec0804b7c873d72585d92"
+
+[media.source]
+type = "synthetic"
+license = "Apache-2.0"
+description = "JSON animation vocabulary listing 22 legal animation types (slide_in_from_right, fade_in, morph_color_to_green, morph_color_to_red, expand_downward, expand_upward, pulse, cross_fade, etc.) + per-row schema rule. Submit (claim_idx, described_animation, observed_animation, match) for all 8 claims."

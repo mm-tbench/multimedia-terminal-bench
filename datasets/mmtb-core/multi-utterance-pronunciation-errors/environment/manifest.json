@@ -1,0 +1,251 @@
+{
+  "utterances": [
+    {
+      "utterance_id": "U1",
+      "audio_file": "U1.wav",
+      "transcript": "JUST SET HOOK AND PUT THE PRESSURE",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "JUST",
+          "canonical_phones": [
+            "JH",
+            "AH0",
+            "S",
+            "T"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "SET",
+          "canonical_phones": [
+            "S",
+            "EH0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "HOOK",
+          "canonical_phones": [
+            "HH",
+            "UH0",
+            "K"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "AND",
+          "canonical_phones": [
+            "AE0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "PUT",
+          "canonical_phones": [
+            "P",
+            "UH0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "THE",
+          "canonical_phones": [
+            "DH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "PRESSURE",
+          "canonical_phones": [
+            "P",
+            "R",
+            "EH1",
+            "SH",
+            "ER0"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U2",
+      "audio_file": "U2.wav",
+      "transcript": "SHE OPENED HER EYES, STARING UP AT HIM.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "SHE",
+          "canonical_phones": [
+            "SH",
+            "IY0"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "OPENED",
+          "canonical_phones": [
+            "OW1",
+            "P",
+            "AH0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "HER",
+          "canonical_phones": [
+            "HH",
+            "AH0"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "EYES",
+          "canonical_phones": [
+            "AY0",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "STARING",
+          "canonical_phones": [
+            "S",
+            "T",
+            "EH1",
+            "R",
+            "IH0",
+            "NG"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "UP",
+          "canonical_phones": [
+            "AH0",
+            "P"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "AT",
+          "canonical_phones": [
+            "AE0",
+            "T"
+          ]
+        },
+        {
+          "word_index": 7,
+          "word": "HIM",
+          "canonical_phones": [
+            "HH",
+            "IH0",
+            "M"
+          ]
+        }
+      ]
+    },
+    {
+      "utterance_id": "U3",
+      "audio_file": "U3.wav",
+      "transcript": "AND THERE WAS AN END OF IT.",
+      "script_words": [
+        {
+          "word_index": 0,
+          "word": "AND",
+          "canonical_phones": [
+            "AH0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 1,
+          "word": "THERE",
+          "canonical_phones": [
+            "DH",
+            "EH0",
+            "R"
+          ]
+        },
+        {
+          "word_index": 2,
+          "word": "WAS",
+          "canonical_phones": [
+            "W",
+            "AH0",
+            "Z"
+          ]
+        },
+        {
+          "word_index": 3,
+          "word": "AN",
+          "canonical_phones": [
+            "AE0",
+            "N"
+          ]
+        },
+        {
+          "word_index": 4,
+          "word": "END",
+          "canonical_phones": [
+            "EH0",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "word_index": 5,
+          "word": "OF",
+          "canonical_phones": [
+            "AH0",
+            "V"
+          ]
+        },
+        {
+          "word_index": 6,
+          "word": "IT",
+          "canonical_phones": [
+            "IH0",
+            "T"
+          ]
+        }
+      ]
+    }
+  ],
+  "phone_inventory": [
+    "AE",
+    "AH",
+    "AY",
+    "D",
+    "DH",
+    "EH",
+    "ER",
+    "HH",
+    "IH",
+    "IY",
+    "JH",
+    "K",
+    "M",
+    "N",
+    "NG",
+    "OW",
+    "P",
+    "R",
+    "S",
+    "SH",
+    "T",
+    "UH",
+    "V",
+    "W",
+    "Z",
+    "<DEL>",
+    "<unk>"
+  ],
+  "notes": "Each utterance has its canonical ARPABET phone sequence per word (no stress digits in your output, agent should strip them)."
+}

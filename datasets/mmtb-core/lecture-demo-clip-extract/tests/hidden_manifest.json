@@ -1,0 +1,50 @@
+{
+  "iou_tol": 0.4,
+  "pass_threshold": 0.67,
+  "min_quote_words": 5,
+  "n_gold": 7,
+  "gold": [
+    {
+      "slide_title": "Motivating examples",
+      "start_sec": 175,
+      "end_sec": 209,
+      "gold_phrase_example": "fluorescent image data microscopy of individual neurons within brain"
+    },
+    {
+      "slide_title": "Let's build a pipeline!",
+      "start_sec": 470,
+      "end_sec": 509,
+      "gold_phrase_example": "morphological operations and then measure something about those objects."
+    },
+    {
+      "slide_title": "4. Morphological operations",
+      "start_sec": 750,
+      "end_sec": 779,
+      "gold_phrase_example": "of morphological operation where we have a binary image,"
+    },
+    {
+      "slide_title": "5. Measuring objects",
+      "start_sec": 930,
+      "end_sec": 1049,
+      "gold_phrase_example": "individual isolated blobs are labeled with a different integer"
+    },
+    {
+      "slide_title": "The full pipeline",
+      "start_sec": 1255,
+      "end_sec": 1284,
+      "gold_phrase_example": "very easily inspect intermediate stages and just intermediate portions"
+    },
+    {
+      "slide_title": "Custom functions",
+      "start_sec": 1285,
+      "end_sec": 1314,
+      "gold_phrase_example": "overlap from task or map blocks directly yourself which"
+    },
+    {
+      "slide_title": "Scaling up computation",
+      "start_sec": 1315,
+      "end_sec": 1334,
+      "gold_phrase_example": "to say a supercomputing cloud, the DAS distributed library"
+    }
+  ]
+}

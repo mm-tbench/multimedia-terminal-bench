@@ -1,0 +1,35 @@
+{
+  "clips": [
+    {
+      "clip_id": "U1",
+      "audio_file": "U1.wav",
+      "duration_sec": 3.714
+    },
+    {
+      "clip_id": "U2",
+      "audio_file": "U2.wav",
+      "duration_sec": 3.89
+    },
+    {
+      "clip_id": "U3",
+      "audio_file": "U3.wav",
+      "duration_sec": 3.911
+    },
+    {
+      "clip_id": "U4",
+      "audio_file": "U4.wav",
+      "duration_sec": 3.806
+    },
+    {
+      "clip_id": "U5",
+      "audio_file": "U5.wav",
+      "duration_sec": 3.563
+    },
+    {
+      "clip_id": "U6",
+      "audio_file": "U6.wav",
+      "duration_sec": 3.797
+    }
+  ],
+  "task_notes": "Each clip is a short English speech recording. For each clip, decide whether the speaker uttered a QUESTION (yes/no question, wh-question, or other interrogative) or a STATEMENT (declarative, command, or other non-interrogative). Base your judgment on prosody (intonation contour at sentence end, pitch pattern). Transcripts are NOT provided \u2014 you must classify from audio alone."
+}

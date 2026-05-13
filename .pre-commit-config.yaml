@@ -1,0 +1,37 @@
+repos:
+  # Ruff linting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.10
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Task validation (local hooks)
+  - repo: local
+    hooks:
+      # Keep each task's environment/{fetch_media.py, media.toml} byte-identical
+      # to their sources. Re-stages updated copies automatically.
+      - id: sync-task-env
+        name: Sync fetch_media.py + media.toml into task environments
+        entry: uv run python scripts/sync_task_env.py
+        language: system
+        files: ^(scripts/fetch_media\.py$|datasets/mmtb-core/.+/(media\.toml|environment/(fetch_media\.py|media\.toml))$)
+        pass_filenames: false
+
+      # Fast structure check — runs when any task file changes
+      - id: task-structure
+        name: Validate task structure
+        entry: uv run python scripts/validate_task_structure.py
+        language: system
+        files: ^(datasets/mmtb-core/|scripts/fetch_media\.py$)
+        pass_filenames: false
+
+      # Docker oracle/dummy test — runs when task files change
+      - id: task-docker
+        name: Validate task (oracle + dummy)
+        entry: ./scripts/validate_task.sh
+        language: system
+        files: ^datasets/mmtb-core/
+        pass_filenames: false
+        stages: [pre-push]
