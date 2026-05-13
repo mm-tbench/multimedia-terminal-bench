@@ -264,22 +264,23 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
   </p>
 
   <p>
-    <strong>Construction pipeline.</strong> MMTB starts from <strong>163
+    <strong>Construction pipeline.</strong> MMTB begins with <strong>163
     candidate scenarios</strong>, each anchored to a specific public URL
     documenting a <strong>paid practitioner workflow</strong> &mdash;
     predominantly Upwork and Fiverr gig listings, with casting calls,
-    practitioner forums, and industry-standards documents making up the rest.
-    The suite captures the multimedia work people are actually paid to do, not
-    synthetic instruction templates. Each candidate is scoped into a concrete
-    task design, scaffolded as a Harbor task, and populated with
-    license-compatible external media or controlled synthetic / derivative
-    assets. Tasks then pass automated checks (structure, Docker build, media
-    fetch, oracle solvability, dummy/no-op failure), construction-time baseline
-    screens (text-only shell pipelines must score 0; full Terminus-MM may
-    pass), and manual review for trivial shortcuts, unrealistic setups, and
-    redundancy. After multi-stage filtering, <strong>105 tasks</strong> are
-    released, with per-file provenance recorded in <code>media.toml</code>
-    (source URL, license, sha256).
+    practitioner forums, and industry standards documents making up the
+    rest &mdash; so the suite captures the multimedia work people are
+    actually paid to do, not synthetic instruction templates. Each scenario
+    is scoped into a concrete task design, scaffolded as a Harbor task, and
+    populated with license-compatible external media or controlled synthetic
+    and derivative assets. The resulting candidate tasks are then filtered
+    through automated checks for task structure, Docker build, media
+    fetching, oracle solvability, and dummy/no-op failure, as well as
+    baseline checks for tasks easily solved by baselines, followed by manual
+    review for trivial shortcuts, unrealistic setups, and redundancy. After
+    filtering, we obtain <strong>105 tasks</strong>, each with asset
+    provenance recorded in <code>media.toml</code>, including source
+    descriptions, license information, and content hashes.
   </p>
 
   <p>
@@ -341,49 +342,60 @@ html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 
   <h3 class="finding-h3">What we find</h3>
   <ul class="findings-list">
-    <li><strong>Native multimedia access is essential, image alone is not.</strong>
-    Text-only Terminus-2 (0.124) and image-only Terminus-KIRA (0.105) leave MMTB
-    largely unsolved on Gemini-3.1-Pro. Adding native audio or video access
-    lifts performance substantially (Terminus-IA / Terminus-IV both reach
-    0.333); the full Terminus-MM at 0.371 binary / 0.469 partial achieves the
-    best result. Image perception serves as a complement to audio or video,
-    not as a standalone channel &mdash; the bottleneck is access to media cues
-    such as speech, sound events, motion, timing boundaries, and audio-visual
-    alignment.</li>
+    <li><strong>Native multimedia access improves multimedia-file task
+    solving.</strong> Text-only and text-image access are insufficient for
+    many multimedia-file tasks: on Gemini-3.1-Pro, Terminus-2 reaches
+    0.124 binary / 0.162 partial and Terminus-KIRA reaches 0.105 / 0.159.
+    Adding native media access leads to substantially higher performance:
+    Terminus-IA and Terminus-IV each reach 0.333 binary, and Terminus-MM
+    reaches 0.371 binary / 0.469 partial. Image perception is useful as a
+    complement to audio or video evidence, but the main bottleneck in MMTB
+    is access to media cues such as speech, sound events, motion, timing
+    boundaries, and audio-visual alignment. Native multimedia-file access
+    is an essential component of effective task solving in MMTB.</li>
 
-    <li><strong>Command-line conversions are far less efficient than native
-    access.</strong> On tasks both Terminus-MM and a partial-modality harness
-    solve, the conversion-heavy harness incurs
-    <strong>1.63&times;&ndash;7.72&times;</strong> average API-cost overhead
-    &mdash; worst case <strong>30.11&times;</strong> when native video is
-    missing and <strong>42.49&times;</strong> when native audio is missing.
-    Trajectory turn counts can stretch up to 8.10&times;. Native access
-    shortens the evidence-acquisition path; Terminus-MM has the lowest mean
-    API cost among Gemini-2.5-Flash agents and the second-lowest among
-    Gemini-3.1-Pro agents.</li>
+    <li><strong>Command-line conversions are less efficient than native
+    access.</strong> When native perception for a required modality is
+    unavailable, agents inspect media through command-line conversion
+    tools. Conversion-heavy successful runs incur substantially higher
+    overhead: average API-cost ratios range from
+    <strong>1.63&times; to 7.72&times;</strong>, with worst cases reaching
+    <strong>30.11&times;</strong> when native video is missing and
+    <strong>42.49&times;</strong> when native audio is missing. Turn ratios
+    also increase in most settings, with a worst case of 8.10&times;. This
+    overhead stems from a longer evidence-acquisition path: the agent must
+    choose an intermediate representation, run the corresponding tools,
+    interpret lossy derived evidence, and often retry before producing the
+    final artifact.</li>
 
-    <li><strong>Native perception and command-line tool-use solve different
-    tasks.</strong> Across the 105-task suite, Terminus-MM (Gemini-3.1-Pro)
-    and Codex CLI (GPT-5.2) solve overlapping but non-nested sets:
-    <strong>28</strong> tasks only Terminus-MM, <strong>6</strong> only
-    Codex CLI, <strong>11</strong> both, <strong>60</strong> still unsolved
-    by either. Terminus-MM-only tasks tend to require direct native
-    grounding; Codex-CLI-only tasks are ones where command-line conversion
-    suffices. A dedicated multimedia terminal harness therefore needs both
-    native access and reliable tool-use. Within Terminus-MM,
-    <em>workspace-aware modality masking</em> also matters: removing it lowers
-    both binary and partial success on each backbone.</li>
+    <li><strong>Multimedia terminal harnesses need both native access and
+    tool-use ability.</strong> Terminus-MM and Codex CLI solve overlapping
+    but non-nested task sets across the 105-task suite:
+    <strong>28</strong> tasks are solved only by Terminus-MM,
+    <strong>6</strong> only by Codex CLI, <strong>11</strong> by both, and
+    <strong>60</strong> by neither. Terminus-MM-only tasks tend to require
+    native modality understanding; Codex-CLI-only tasks tend to be cases
+    where command-line conversion tools are sufficient. A dedicated harness
+    for multimedia-file tasks therefore needs both native access and
+    tool-use ability. Within Terminus-MM, removing workspace-aware
+    modality masking lowers both binary and partial success on each
+    backbone, suggesting that an unmasked tool list can draw the agent into
+    redundant evidence gathering over unnecessary modalities.</li>
 
-    <li><strong>Failure modes differ between native and conversion agents.</strong>
-    Labelling every failure across 66 Terminus-MM and 88 Codex CLI runs,
-    Terminus-MM failures concentrate in model reasoning
-    (<strong>47%</strong>) &mdash; the cue is available but the agent
-    misinterprets it. Codex CLI failures concentrate in tool setup / execution
-    timeouts (<strong>39%</strong>, rising to ~47% when tool failures and
-    low-precision conversions are included). Missing native audio-video
-    perception forces the agent through a longer terminal pipeline (choose
-    intermediate representation, run tool, interpret lossy output, recover
-    from errors), adding failure points before any decision is made.</li>
+    <li><strong>Failure modes differ between native-media and terminal
+    agents.</strong> Labelling every binary-failed run across
+    66 Terminus-MM and 88 Codex CLI failures, Terminus-MM and Codex CLI
+    fail in different parts of the workflow. Terminus-MM still has a large
+    model-reasoning component: <strong>47%</strong> of its failed runs end
+    with the model misinterpreting or misusing available evidence;
+    tool-operation failures (tool setup, tool execution, and tool failure
+    together) account for <strong>24%</strong>. By contrast, Codex CLI
+    shows a much larger tool-use failure footprint: setup and execution
+    timeouts alone account for <strong>39%</strong> of its failures, and
+    adding tool failures and low precision raises the strict tool-operation
+    share to about <strong>47%</strong>. Missing native audio-video
+    perception forces the agent to externalize perceptual evidence through
+    a longer terminal pipeline.</li>
   </ul>
 </section>
 
