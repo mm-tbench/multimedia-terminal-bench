@@ -1,6 +1,6 @@
 # MultiMedia-TerminalBench (MMTB)
 
-📄 [Paper (arXiv)](https://arxiv.org/abs/2605.10966) &nbsp; &nbsp; 🌐 [Project Page](https://mm-tbench.github.io/multimedia-terminal-bench/) &nbsp; &nbsp; 🤗 [Dataset](https://huggingface.co/datasets/mm-tbench/mmtb-media) &nbsp; &nbsp; 💻 [Code](https://github.com/mm-tbench/multimedia-terminal-bench)
+📄 [Paper (arXiv)](https://arxiv.org/abs/2605.10966) &nbsp; &nbsp; 🌐 [Project Page](https://mm-tbench.github.io/multimedia-terminal-bench/) &nbsp; &nbsp; 🤗 [Dataset](https://huggingface.co/datasets/mm-tbench/mmtb-media) &nbsp; &nbsp; 💻 [Code](https://github.com/mm-tbench/multimedia-terminal-bench) &nbsp; &nbsp; 📦 [Harbor Registry](https://registry.harborframework.com/datasets/mmtb/multimedia-terminalbench)
 
 A benchmark for **terminal agents that work directly with audio and video files**.
 
@@ -85,6 +85,34 @@ Models are addressed in LiteLLM `<provider>/<model>` form (e.g.
 `gemini/gemini-3.1-pro-preview`, `anthropic/claude-sonnet-4-6`,
 `openrouter/google/gemini-3.1-pro-preview`). Any provider LiteLLM supports
 will work; pick whichever fits your access.
+
+## Quick start (Harbor registry)
+
+MMTB is also published on the Harbor registry as
+[`mmtb/multimedia-terminalbench@v1.0`](https://registry.harborframework.com/datasets/mmtb/multimedia-terminalbench).
+The registry path is the no-clone route for off-the-shelf agents:
+
+```bash
+# Single task
+harbor run -t mmtb/audience-ringtone-detection@v1.0 \
+  -a claude-code -m anthropic/claude-sonnet-4-6
+
+# Full dataset (105 tasks)
+harbor run -d mmtb/multimedia-terminalbench@v1.0 \
+  -a codex-cli -m openai/gpt-5.2
+```
+
+The Terminus family (`terminus-mm`, `terminus-kira`, …) lives in this
+repository's `mmtb_runtime/` package, so it still requires the local clone;
+combine the registry dataset with the local agent import path:
+
+```bash
+harbor run -d mmtb/multimedia-terminalbench@v1.0 \
+  --agent-import-path mmtb_runtime.agent:TerminusMM \
+  -m gemini/gemini-3.1-pro-preview
+```
+
+See [REPRODUCE.md](REPRODUCE.md) for the full benchmark sweep instructions.
 
 ## Benchmark protocol
 
