@@ -3,7 +3,7 @@ schema_version = "1.1"
 [task]
 name = "mmtb/audience-ringtone-detection"
 description = "Find the recital recording containing an audience cellphone ringtone and sort recordings"
-keywords = ["audio", "anomaly-detection", "video", "perceptual"]
+keywords = ["audio", "anomaly-detection", "perceptual"]
 
 [agent]
 timeout_sec = 600.0
@@ -20,13 +20,13 @@ allow_internet = true
 
 [metadata.mmtb]
 task_family = "dataset_annotation"
-required_modalities = ["video", "audio"]
+required_modalities = ["audio"]
 primary_output_path = "/app/shared"
 
 [metadata.mmtb.native_requirement]
 image = false
 audio = true
-video = true
+video = false
 
 [metadata.mmtb.tool_requirement]
 ffmpeg = false
@@ -35,6 +35,6 @@ transcription = false
 [[metadata.mmtb.inputs]]
 id = "recordings-dir"
 path = "/app/recordings"
-modality = "video"
-mime_type = "video/mp4"
+modality = "audio"
+mime_type = "audio/mpeg"
 required = true
