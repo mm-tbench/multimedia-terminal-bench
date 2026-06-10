@@ -72,6 +72,7 @@ from harbor.models.trajectories import (
     ToolCall,
 )
 
+from mmtb_runtime.agent._max_tokens import resolve_max_tokens
 from mmtb_runtime.agent.anthropic_caching import add_anthropic_caching
 
 
@@ -891,7 +892,7 @@ class TerminusMM(Terminus2):
             "temperature": self._temperature,
             "tools": tools,
             "timeout": 900,
-            "max_tokens": 32768,
+            "max_tokens": resolve_max_tokens(self._model_name),
             "drop_params": True,
         }
         if hasattr(self._llm, "_api_base") and self._llm._api_base:
